@@ -1,1 +1,1 @@
-latexmk -output-directory=build
+latexmk main.tex -output-directory=build -pdf

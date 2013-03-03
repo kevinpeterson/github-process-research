@@ -45,7 +45,7 @@ commit_table = Table('commit', metadata,
 metadata.create_all()
 
 session = requests.Session()
-session.auth = ('kevinpeterson', 'Sept2907$$')
+session.auth = ('kevinpeterson', '*******')
 
 response = urllib2.urlopen('https://raw.github.com/gist/4669395')
 random_words = response.readlines()
