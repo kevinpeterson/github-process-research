@@ -8,8 +8,10 @@ import random
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData, Column, Table, ForeignKey
 from sqlalchemy import Integer, String, DateTime
+
+from config import *
  
-engine = create_engine('mysql://root@localhost:3306/github', echo=False)
+engine = create_engine('mysql://'+db_username+'@'+db_location+':'+db_port+'/'+db_database, echo=False)
  
 metadata = MetaData(bind=engine)
  
@@ -45,7 +47,7 @@ commit_table = Table('commit', metadata,
 metadata.create_all()
 
 session = requests.Session()
-session.auth = ('kevinpeterson', '*******')
+session.auth = (github_username, github_password)
 
 response = urllib2.urlopen('https://raw.github.com/gist/4669395')
 random_words = response.readlines()
