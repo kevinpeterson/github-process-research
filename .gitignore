@@ -1,3 +1,7 @@
 *.pyc
 build/
 config.py
+*.log
+*.synctex.gz
+*.aux
+*.pdf

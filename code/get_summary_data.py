@@ -1,4 +1,5 @@
 import MySQLdb as mdb
+from decimal import Decimal
 from config import *
 
 try:
@@ -21,7 +22,10 @@ try:
 	rows = cur.fetchall()
 
 	for row in rows:
-		print row[0]
+		for i in range(0,5):
+			print row[i],
+			print ' \\\\' if i == 4 else ' & ',
+		print
 
 except Exception as e:
 	print e

@@ -35,7 +35,7 @@ from
         issues.close_date is null
     group by repository_id) as open_issues 
 union select 
-    'Average Issue Close Time Per Project' as var, avg(counts), min(counts), max(counts), std(counts)
+    'Issue Close Time' as var, avg(counts), min(counts), max(counts), std(counts)
 from
     (select 
         avg(DATEDIFF(close_date, open_date)) as counts
