@@ -41,24 +41,37 @@ In OSS, a project \emph{fork} has at times carried negative connotations, and ha
 
 The Apache Project noted that a rapid response to problems can be obtained because OSS is not bound to release schedules in the same way commercial software is. ``Patches'' may be released at any time, by any member of the community\cite{mockus2000case}. ``Patches"" in the context of GitHub could be equated to Pull Requests.\\
 
-\emph{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude.}\\
+\emph{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude, but the number of Committers will remain small.}\\
 Research into the Apache Server project observed that there were far more \emph{Issue Reporters} than there were code \emph{Committers}\cite{mockus2000case}. The Apache Server project is an excellent case study in this type of Developer Hierarchy. Apache is built around a small set of {\it Core Developers}, followed by {\it Defect Repairers} and {\it Defect Reporters}. Each level of this hierarchy brings with it an order of magnitude increase in number of participants. The 10-15 {\it Core Developers} contribute around 80\% of the new functionality, while the rest of the 400 code contributors focus primarily on bug fixes. The {\it Defect Reporters} were by far the largest group, with over 3000 individuals submitting bug reports.\\
 
-Because issue reporting is of low risk to the code base, but has potentially high value, it is a perfect way for large numbers of people to contribute. It is expected that the findings of the Apache Server project research will hold true for GitHub projects as well.
+Because issue reporting is of low risk to the code base, but has potentially high value, it is a perfect way for large numbers of people to contribute. It is expected that the findings of the Apache Server project research will hold true for GitHub projects as well.\\
+
+\subsection{Research Questions}
+
+\emph{Research Question 1: There will be more Issue Reporters than Committers by an order of magnitude, but the number of Committers will remain small.}\\
+A smal core of developers, however, seems to be a historial fact of OSS development\cite{mockus2000case,mockus2000two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?
+
+\emph{Research Question 2: What is the GitHub Philosophy?}\\
+The socal aspects of GitHub are an important part of the experience\cite{dabbish2012social}. User interactions and social pressures can drive OSS development in interesting ways. Social aspects of OSS development have existed before GitHub, with mailing lists\cite{mockus2000case}, gift giving mechanisms\cite{bergquist2008power}, and other code hosting sites. What is GitHub doing to facilitate change on OSS development, and how does it see OSS development changing moving forward?
 
 \section{Methods}
 
 \section{Results}
 \emph{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
-\includegraphics[height=3in,width=3in]{images/issue_close_time_forks_scatterplot.png}
+\includegraphics[height=3in,width=3in]{images/watcher_forks_scatterplot.png}
 
 \emph{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
-\includegraphics[height=3in,width=3in]{images/watcher_forks_scatterplot.png}
+\includegraphics[height=3in,width=3in]{images/issue_close_time_forks_scatterplot.png}
 
 \emph{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude.}\\
 \includegraphics[height=3in,width=3in]{images/issue_reporters_histogram.png}
 \includegraphics[height=3in,width=3in]{images/committers_histogram.png}
 \includegraphics[height=3in,width=3in]{images/issue_reporters_committers_scatterplot.png}
+
+\subsection{Other Findings}
+\emph{The Git SCM }\\
+
+\emph{The GitHub Process applies to more than code artifacts}\\
 
 \section{Acknowledgments}
 
