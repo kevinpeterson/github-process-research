@@ -34,7 +34,7 @@ issue_close_time_histogram.plot("issue_close_time_histogram")
 
 watcher_forks_scatterplot_query = '''select watchers, forks from github.repository'''
 watcher_forks_scatterplot = ScatterPlot(watcher_forks_scatterplot_query, "Watchers", "Forks", (0,1000), (0,150))
-print watcher_forks_scatterplot.plot("watcher_forks_scatter_scatterplot")
+print watcher_forks_scatterplot.plot("watcher_forks_scatterplot")
 
 issue_reporters_committers_query = '''
 select 
@@ -54,3 +54,22 @@ from
 '''
 issue_reporters_committers_scatterplot = ScatterPlot(issue_reporters_committers_query, "Committers", "Issue Reoprters", (0,140), (0,140))
 print issue_reporters_committers_scatterplot.plot("issue_reporters_committers_scatterplot")
+
+issue_close_time_forks_query = '''
+select 
+    cast(issues.close_time as unsigned), repository.forks
+from
+    github.repository repository
+        inner join
+    (select 
+        avg(DATEDIFF(close_date, open_date)) as close_time,
+            repository_id
+    from
+        github.issue issue
+    where
+        issue.close_date is not null
+    group by repository_id) issues ON repository.id = issues.repository_id
+group by repository_id
+'''
+issue_close_time_forks_scatterplot = ScatterPlot(issue_close_time_forks_query, "Close Time", "Forks", (0,200), (0,200))
+print issue_close_time_forks_scatterplot.plot("issue_close_time_forks_scatterplot")

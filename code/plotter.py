@@ -36,6 +36,10 @@ class ScatterPlot:
 		plt.plot(x,y,'bo',x,m*numpy.array(x)+b,'-k',linewidth=2)
 
 		plt.scatter(x,y)
+
+		correlation_coefficient = numpy.corrcoef(x,y)[0,1]
+		title('Correlation Coefficient: ' + str(correlation_coefficient))
+
 		plt.xlabel(self.xlabel)
 		plt.ylabel(self.ylabel)
 		plt.xlim(self.xrange)
@@ -45,7 +49,7 @@ class ScatterPlot:
 		F.savefig("../paper/images/"+filename+".png")
 		plt.close(fig)
 
-		return numpy.corrcoef(x,y)
+		return correlation_coefficient
 
 class Histograph:
 	def __init__(self, sql, xlabel, ylabel, range=None):
