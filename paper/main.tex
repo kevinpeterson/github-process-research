@@ -1,6 +1,9 @@
 % SEng 5852 - Spring 2013 White Paper Review
 \documentclass{proc}
 \usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
 \setlength\parindent{0pt}
 
 \title{
@@ -60,8 +63,41 @@ The socal aspects of GitHub are an important part of the experience\cite{dabbish
 The Object Managment Group\textregistered\footnote{http://www.omg.org} computer industry consortium focused on technology standards. Potential standard summission teams must go through a vetting process\cite{kobryn1999uml} which allows industry representatives to provide feedback on the standard. Gathering and recording this feedback is a challenge, but GitHub's issue tracking system may be able to streamline the process.
 
 \section{Methods}
+Data collection was done using the GitHub REST API\footnote{http://developer.github.com/v3/}. A random selection of 1000 repositories was selected using the following algorithm:\footnote{https://github.com/kevinpeterson/github-process-research/blob/master/code/research.py}
+
+\begin{algorithmic}
+\While{$i < 1000$} 
+\State $i \gets i + 1$
+\State $word \gets random(word\_list)$
+\State $repos \gets git\_search(word)$
+\State $j \gets random(0...size(repos))$
+\State $repo \gets repos_j$
+\State \Call{process}{repo}
+\EndWhile
+\end{algorithmic}\footnote
+
+
+$\displaystyle\frac{\sum\limits_{i=1}^{n} f( \left\{{i_j,i_{j+1},...,i_{j+k}  }\right\} ) } {n} $.
+
 
 \section{Results}
+
+\subsection{Summary Statistics}
+\begin{table}[!ht]
+\begin{center}
+\caption{GitHub Summary Statistics}
+\begin{tabular}{rrrrrrr}
+\hline
+Variable & Mean & Min & Max & Std. Dev. \\
+\hline
+\input{summary_statistics}
+\hline
+\end{tabular}
+N = 100 Repositories
+\end{center}
+\end{table}
+
+
 \subsection{Hypotheses}
 \emph{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
 \includegraphics[height=3in,width=3in]{images/watcher_forks_scatterplot.png}

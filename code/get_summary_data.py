@@ -21,9 +21,17 @@ try:
 
 	rows = cur.fetchall()
 
+	col_processor = {
+		0:lambda x: x,
+		1:lambda x: round(x,2),
+		2:lambda x: int(x),
+		3:lambda x: int(x),
+		4:lambda x: round(x,2)
+	}
+
 	for row in rows:
 		for i in range(0,5):
-			print row[i],
+			print col_processor[i](row[i]),
 			print ' \\\\' if i == 4 else ' & ',
 		print
 
