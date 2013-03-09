@@ -6,6 +6,28 @@ from matplotlib import rc
 import matplotlib.pyplot as plt
 import numpy
 
+class PieChart:
+	def __init__(self, sql):
+		self.sql = sql
+
+	def plot(self, filename):
+		db = MySQLdb.connect(host=db_host, user=db_username, passwd=db_password, db=db_database)
+		cursor = db.cursor()
+
+		cursor.execute(self.sql)
+
+		result = cursor.fetchall()
+
+		x = []
+		y = []
+
+		for record in result:
+			x.append(record[0])
+
+		plt.pie([4,4,10,4,4], autopct='%.2f')
+
+		plt.show()
+
 class ScatterPlot:
 	def __init__(self, sql, xlabel, ylabel, xrange=None, yrange=None):
 		self.sql = sql
