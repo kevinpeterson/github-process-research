@@ -11,7 +11,7 @@ from sqlalchemy import Integer, String, DateTime
 
 from config import *
  
-engine = create_engine('mysql://'+db_username+'@'+db_location+':'+db_port+'/'+db_database, echo=False)
+engine = create_engine('mysql://'+db_username+'@'+db_host+':'+str(db_port)+'/'+db_database, echo=False)
  
 metadata = MetaData(bind=engine)
  
@@ -135,4 +135,4 @@ def crawl(sample_size):
 			print e
 
 
-crawl(313)
+crawl(999)

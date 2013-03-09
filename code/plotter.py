@@ -18,15 +18,27 @@ class PieChart:
 
 		result = cursor.fetchall()
 
-		x = []
-		y = []
+		ranges = {'0-5':0,'5-10':0,'10-50':0,'50-95':0,'95-100':0}
 
 		for record in result:
-			x.append(record[0])
+			percentage = record[0]
+			if 0 <= percentage < 5:
+				ranges['0-5'] += 1
+			elif 5 <= percentage < 10:
+				ranges['5-10'] += 1
+			elif 10 <= percentage < 50:
+				ranges['10-50'] += 1
+			elif 50 <= percentage < 95:
+				ranges['50-95'] += 1
+			elif 95 <= percentage <= 100:
+				ranges['95-100'] += 1
 
-		plt.pie([4,4,10,4,4], autopct='%.2f')
+		fig = plt.figure()
+		plt.pie(ranges.values(), labels=[key + "%" for key in ranges.keys()], autopct='%.2f%%', shadow=True)
 
-		plt.show()
+		F = gcf()
+		F.savefig("../paper/images/"+filename+".png")
+		plt.close(fig)
 
 class ScatterPlot:
 	def __init__(self, sql, xlabel, ylabel, xrange=None, yrange=None):

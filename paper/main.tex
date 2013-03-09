@@ -2,8 +2,10 @@
 \documentclass{proc}
 \usepackage{graphicx}
 \usepackage{mathtools}
+\usepackage{fixltx2e}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
+\MakeRobust{\Call}
 \setlength\parindent{0pt}
 
 \title{
@@ -70,22 +72,29 @@ Data collection was done using the GitHub REST API\footnote{http://developer.git
 \State $i \gets i + 1$
 \State $word \gets random(word\_list)$
 \State $repos \gets git\_search(word)$
-\State $j \gets random(0...size(repos))$
+\State $j \gets \Call{random}{0... \Call{size}{repos}}$
 \State $repo \gets repos_j$
-\State \Call{process}{repo}
+\State \Call{store}{repo}
 \EndWhile
-\end{algorithmic}\footnote
+\end{algorithmic}
+
+The \textsc{store} function accepts as an input a given random repository. The purpose of this function is to persist the given repository to a database for further analysis.
 
 
-$\displaystyle\frac{\sum\limits_{i=1}^{n} f( \left\{{i_j,i_{j+1},...,i_{j+k}  }\right\} ) } {n} $.
+\begin{figure}
+\includegraphics[height=3in,width=3in]{images/er.png}
+\caption{GitHub Date Entity Relationship diagram}
+\end{figure}
 
+
+$\displaystyle\frac{\sum\limits_{i=1}^{n} f(  S_{ij} ) } {n} $.
 
 \section{Results}
+
 
 \subsection{Summary Statistics}
 \begin{table}[!ht]
 \begin{center}
-\caption{GitHub Summary Statistics}
 \begin{tabular}{rrrrrrr}
 \hline
 Variable & Mean & Min & Max & Std. Dev. \\
@@ -94,29 +103,49 @@ Variable & Mean & Min & Max & Std. Dev. \\
 \hline
 \end{tabular}
 N = 100 Repositories
+\caption{GitHub Summary Statistics}
 \end{center}
 \end{table}
 
 
 \subsection{Hypotheses}
 \emph{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
+\begin{figure}
 \includegraphics[height=3in,width=3in]{images/watcher_forks_scatterplot.png}
+\caption{Repostitory watchers and forks}
+\end{figure}
 
 \emph{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
+\begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_close_time_forks_scatterplot.png}
+\caption{Repostitory issue close time and number of forks}
+\end{figure}
 
 \emph{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude.}\\
+\begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_reporters_histogram.png}
+\caption{Repostitory issue reporters}
+\end{figure}
+\begin{figure}
 \includegraphics[height=3in,width=3in]{images/committers_histogram.png}
+\caption{Repostitory committers}
+\end{figure}
+\begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_reporters_committers_scatterplot.png}
+\caption{Repostitory issue reporters and committers}
+\end{figure}
 
 \subsection{Research Questions}
 \emph{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
+\begin{figure}
+\includegraphics[height=3in,width=3in]{images/committers_percentage_pie_chart.png}
+\caption{Individual committer commit percentage per repository}
+\end{figure}
 
 \emph{Research Question 2: What is the GitHub Philosophy?}\\
 
 \emph{Research Question 3: Can GitHub be used for more that code artifacts?}\\
-As part of the OMG standardization process, the CTS2 Specification used GitHub issue tracker to track specification changes.
+As part of the OMG\textregistered standardization process, the CTS2 Specification used GitHub issue tracker to track specification changes.
 
 \section{Acknowledgments}
 
