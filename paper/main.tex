@@ -56,15 +56,16 @@ Because issue reporting is of low risk to the code base, but has potentially hig
 \subsection{Research Questions}
 
 \emph{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
-A smal core of developers, however, seems to be a historial fact of OSS development\cite{mockus2000case,mockus2000two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?
+A smal core of developers, however, seems to be a historial fact of OSS development\cite{mockus2000case,mockus2000two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?\\
 
-\emph{Research Question 2: What is the GitHub Philosophy?}\\
-The socal aspects of GitHub are an important part of the experience\cite{dabbish2012social}. User interactions and social pressures can drive OSS development in interesting ways. Social aspects of OSS development have existed before GitHub, with mailing lists\cite{mockus2000case}, gift giving mechanisms\cite{bergquist2008power}, and other code hosting sites. What is GitHub doing to facilitate change on OSS development, and how does it see OSS development changing moving forward?
+\emph{Research Question 2: How is GitHub changing the OSS process?}\\
+The socal aspects of GitHub are an important part of the experience\cite{dabbish2012social}. User interactions and social pressures can drive OSS development in interesting ways. Social aspects of OSS development have existed before GitHub, with mailing lists\cite{mockus2000case}, gift giving mechanisms\cite{bergquist2008power}, and other code hosting sites. What is GitHub doing to facilitate change on OSS development, and how does it see OSS development changing moving forward?\\
 
 \emph{Research Question 3: Can GitHub be used for more that code artifacts?}\\
 The Object Managment Group\textregistered\footnote{http://www.omg.org} computer industry consortium focused on technology standards. Potential standard summission teams must go through a vetting process\cite{kobryn1999uml} which allows industry representatives to provide feedback on the standard. Gathering and recording this feedback is a challenge, but GitHub's issue tracking system may be able to streamline the process.
 
 \section{Methods}
+\subsection{Collection and Storage}
 Data collection was done using the GitHub REST API\footnote{http://developer.github.com/v3/}. A random selection of 1000 repositories was selected using the following algorithm:\footnote{https://github.com/kevinpeterson/github-process-research/blob/master/code/research.py}
 
 \begin{algorithmic}
@@ -80,14 +81,47 @@ Data collection was done using the GitHub REST API\footnote{http://developer.git
 
 The \textsc{store} function accepts as an input a given random repository. The purpose of this function is to persist the given repository to a database for further analysis.
 
-
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/er.png}
 \caption{GitHub Date Entity Relationship diagram}
+\label{fig:er_diagram}
 \end{figure}
 
+The database schema to store the data is decribed in \ref{fig:er_diagram}.
 
-$\displaystyle\frac{\sum\limits_{i=1}^{n} f(  S_{ij} ) } {n} $.
+\subsection{Analysis}
+
+Where the Set $S$ is the random GitHub repository sample. Each randomly collected repository $S_i$ contains a Set of attriubtes $A$. Thus, a set of attributes for a given repository can be referred to as $A_{S_i}$.
+
+Given the total set of attributes $A$, each individual attribute set can be denoted as $A_j$. Each individual attribute processed by some aggregate function $f$, or $f(  A_j )$. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}.
+
+Results are then averaged over all repositories, yeilding:
+\[ \frac{\sum\limits_{i=1}^{n} f(  A_{S{_i}j}  ) } {n} \]
+
+The individual attrubites of $A$, or $A_j$, are described below:\\
+\textit{Issues}\\
+The number of issues posted to a repository's issue tracker\footnote{https://github.com/blog/411-github-issue-tracker}.
+
+\textit{Commits}\\
+The number of individual source code commits to a repository.
+
+\textit{Closed Issues}\\
+The number of issues in a repository in a state of \textsc{closed} at the time of processing.
+
+\textit{Open Issues}\\
+The number of issues in a repository in a state of \textsc{open} at the time of processing.
+
+\textit{Issue Close Time}\\
+The average time taken to close a given issue in a repository. Non-\textsc{closed} issues were not couted.
+
+The average is calculated using the following method. Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds.
+
+\[ d\left( \frac{\sum\limits_{i=1}^{n} s(i_{\textrm{closed}}) - s(i_{\textrm{opened}})  } {n} \right) \]
+
+\textit{Issue Creators}\\
+
+\textit{Committers}\\
+
 
 \section{Results}
 
@@ -116,6 +150,7 @@ N = 100 Repositories
 \end{figure}
 
 \emph{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
+No significant correlation was found between the number of repository forks and issue resolution time. It is important to note, however, that issue resolution time is not necessarily related to software product quality in the context of GitHub. We can assert that for serveral reasons. \textit{First}, GitHub issues are not necessarily product defects. Issues may be feature requests. TODOs, or general support questions. \textit{second}, GitHub projects may have primary issue tracking services elsewhere, while using the GitHub issues as secondary services or not at all. \textit{Third}, Pham \textit{et al.} explore an emerging ``testing culture'' in GitHub -- something which could have sizable impacts on software quality but wouldn't necessarily be reflected in this metric \cite{phamcreating}.
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_close_time_forks_scatterplot.png}
 \caption{Repostitory issue close time and number of forks}
@@ -142,7 +177,8 @@ N = 100 Repositories
 \caption{Individual committer commit percentage per repository}
 \end{figure}
 
-\emph{Research Question 2: What is the GitHub Philosophy?}\\
+\emph{Research Question 2: How is GitHub changing the OSS process?}\\
+Thung \textit{et al.} show that the social coding aspects of GitHub -- specifically the developer-to-developer connectivity -- enable high collaboration rates.\cite{thung2013network} In fact, the developer connectivity was shown to be higher than SourceForge and even Facebook. In a recent interview with GitHub staff, the social aspects of GitHub are referred to as ``unique and powerful\cite{begel2013social},'' which seems to suggest that this is a strong underlying product goal for.
 
 \emph{Research Question 3: Can GitHub be used for more that code artifacts?}\\
 As part of the OMG\textregistered standardization process, the CTS2 Specification used GitHub issue tracker to track specification changes.
