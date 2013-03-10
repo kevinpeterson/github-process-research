@@ -83,7 +83,9 @@ class ScatterPlot:
 		F.savefig("../paper/images/"+filename+".png")
 		plt.close(fig)
 
-		return correlation_coefficient
+		f = open("../paper/"+filename+"-correlation.tex",'w')
+		f.write(str(correlation_coefficient))
+		f.close()
 
 class Histograph:
 	def __init__(self, sql, xlabel, ylabel, range=None):

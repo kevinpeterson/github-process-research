@@ -6,6 +6,7 @@
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 \MakeRobust{\Call}
+\usepackage{amsmath}
 \setlength\parindent{0pt}
 
 \title{
@@ -56,7 +57,7 @@ Because issue reporting is of low risk to the code base, but has potentially hig
 \subsection{Research Questions}
 
 \emph{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
-A smal core of developers, however, seems to be a historial fact of OSS development\cite{mockus2000case,mockus2000two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?\\
+A smal core of developers, however, seems to be a historial fact of OSS development\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?\\
 
 \emph{Research Question 2: How is GitHub changing the OSS process?}\\
 The socal aspects of GitHub are an important part of the experience\cite{dabbish2012social}. User interactions and social pressures can drive OSS development in interesting ways. Social aspects of OSS development have existed before GitHub, with mailing lists\cite{mockus2000case}, gift giving mechanisms\cite{bergquist2008power}, and other code hosting sites. What is GitHub doing to facilitate change on OSS development, and how does it see OSS development changing moving forward?\\
@@ -79,7 +80,7 @@ Data collection was done using the GitHub REST API\footnote{http://developer.git
 \EndWhile
 \end{algorithmic}
 
-The \textsc{store} function accepts as an input a given random repository. The purpose of this function is to persist the given repository to a database for further analysis.
+The \textsc{store} function accepts as an input a given random repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/er.png}
@@ -125,7 +126,6 @@ The average is calculated using the following method. Let $d(x)$ be a function t
 
 \section{Results}
 
-
 \subsection{Summary Statistics}
 \begin{table}[!ht]
 \begin{center}
@@ -138,16 +138,25 @@ Variable & Mean & Min & Max & Std. Dev. \\
 \end{tabular}
 N = 100 Repositories
 \caption{GitHub Summary Statistics}
+\label{table:summary_stats}
 \end{center}
 \end{table}
 
+Table \ref{table:summary_stats} describes summary statistics of the repository variables above. The most evident feature of the result is the large variance. In fact, for the set of tested variables $A$, each variable $A_j$ is observed to have a larger standard deviation than the variable mean.
+\begin{equation}
+\forall j \in A \colon \overline{j} < \sigma_{j}
+\label{eq:variance}
+\end{equation}
+All measured variables demonstrated this characteristic.
 
 \subsection{Hypotheses}
 \emph{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
+A correlation coefficient of \input{watcher_forks_scatterplot-correlation} was observed betwee the number of Watchers and Forks of a repository. This suggests that a correlation between Watchers and Forks exists.
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/watcher_forks_scatterplot.png}
 \caption{Repostitory watchers and forks}
 \end{figure}
+The data reinforces the hypothesis, as does other research in the area. Even though there are aguments that the number of Forks is the true measure of project success\cite{baudry2012towards}, the data suggests that the two measures are related. Also, \textit{Dabbish et al.} have noted that the number of Watches can be a key for others to gauge interest in a project, and thus determine if they should participate \cite{dabbish2013leveraging}. If the number of Watchers of a repository serves as a social cue for participation, even ``passive'' involvement with a project (Watching) could influence the ``active'' participation (Forking). This could possibly contribute to the correlation of the two variables.
 
 \emph{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
 No significant correlation was found between the number of repository forks and issue resolution time. It is important to note, however, that issue resolution time is not necessarily related to software product quality in the context of GitHub. We can assert that for serveral reasons. \textit{First}, GitHub issues are not necessarily product defects. Issues may be feature requests. TODOs, or general support questions. \textit{second}, GitHub projects may have primary issue tracking services elsewhere, while using the GitHub issues as secondary services or not at all. \textit{Third}, Pham \textit{et al.} explore an emerging ``testing culture'' in GitHub -- something which could have sizable impacts on software quality but wouldn't necessarily be reflected in this metric \cite{phamcreating}.
@@ -185,12 +194,7 @@ As part of the OMG\textregistered standardization process, the CTS2 Specificatio
 
 \section{Acknowledgments}
 
-
-  
 \bibliographystyle{plain}
 \bibliography{bibliography}
-
-
-
 
 \end{document}
