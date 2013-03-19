@@ -27,7 +27,8 @@ Rochester, MN  55905\\
 
 \begin{abstract}
 Open Source Software (OSS) has produced many successful projects. The development process by which these projects are produced is generally unstructured compared to commercial software -- but a definite pattern does arrive, and is no less a pattern. GitHub, a popular OSS code hosting website, and Git, the site's Source Code Management (SCM) tool of choice, may have the potential to fundamentally change ths process.\\
-By analyzing a subset of GitHub repositories, this report will show how GitHub has influenced some very intrinsic aspects of traditional OSS develoment, such as developer hierarchies and issue close velicity. We find that many of the traditional aspects of OSS development remain, such most project developlment is done by a small group of core developers. Others assumptions about project hierarchy, such as a large number of Issue Reporters compared to Committers, seems unsupported by the data.
+
+By analyzing a subset of GitHub repositories, this report will show how GitHub has influenced some very intrinsic aspects of traditional OSS development, such as developer hierarchies and issue close velocity. We find that many of the traditional aspects of OSS development remain, such most project development is done by a small group of core developers. Others assumptions about project hierarchy, such as a large number of Issue Reporters compared to Committers, seems unsupported by the data.
 
 \end{abstract}
 
@@ -36,20 +37,24 @@ By analyzing a subset of GitHub repositories, this report will show how GitHub h
 \section{Introduction}
 Open Source Software (OSS) has fundamentally changed how we view the Software Development Process\cite{raymond1999cathedral}. OSS projects are not only viable, but successful and thriving. 
 
-A case study of the Apache Server project\cite{mockus2000case} shows that a dedicated community can produce software that rivals or exceeds commercial offerings. This study showed that even in the unstructured context of OSS, certain structures, hierarchies, and codes of conduct emerge. Contrast the Apache Server project to a successful project on GitHub. Although the spirit and intent may be the same, the tool set is drastially different. The intent of this paper is to explore how GitHub facilitates this process, and also how it may cause it to evolve.
+A case study of the Apache Server project\cite{mockus2000case} shows that a dedicated community can produce software that rivals or exceeds commercial offerings. This study showed that even in the unstructured context of OSS, certain structures, hierarchies, and codes of conduct emerge. Contrast the Apache Server project to a successful project on GitHub. Although the spirit and intent may be the same, the tool set is drastially different. The intent of this work is to explore how GitHub facilitates this process, and also how it may cause it to evolve.\\
+
+To better understand quantitatively the GitHub process, three hypotheses are introduced. The goal of these hypotheses is to bridge the gap between the more qualitative research of GitHub\cite{dabbish2012social,begel2013social} and the statistical analysis of data from a random sampling of GitHub projects.\\
+
+In addition, three supporting research questions are proposed. These questions will draw upon data from this work, but also reference interviews with GitHub staff to better represent how GitHub may be changing how OSS development is conducted.
 
 \subsection{Hypotheses}
 The following hypotheses
 
 \textbf{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
-In Open Source Software, a feeling of community belonging can be intrinsicly motivating to developers\cite{lakhani2003hackers}. This feeling of belonging can be expressed passively, as a \emph{watch}, or actively, as a \emph{fork} of a repository. As \emph{watches} don't necessarily signal intent to contribute, a positive direction for an OSS project is to not only increase the number of \emph{watchers}, but also the number of \emph{forks}. As both signify a general general interest in the project, it is expected that there be some correllation between the two.\\
+In Open Source Software, a feeling of community belonging can be intrinsically motivating to developers\cite{lakhani2003hackers}. This feeling of belonging can be expressed passively, as a \emph{watch}, or actively, as a \emph{fork} of a repository. As \emph{watches} don't necessarily signal intent to contribute, a positive direction for an OSS project is to not only increase the number of \emph{watchers}, but also the number of \emph{forks}. As both signify a general general interest in the project, it is expected that there be some correlation between the two.\\
 
 \textbf{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
-In OSS, a project \emph{fork} has at times carried negative connotations, and has even been referred to as a hazzard\cite{kogut2001open}. In the context of Git and GitHub, however, a \emph{fork} is a positive occurence for a project, as it signifies greater project involvement. As Git allows for easy merging of \emph{forks}, code contributions in the form of defect fixes can be incorporated quickly. Because of this, it is expected that \emph{Issue Resolution Time} will decrease as the number of \emph{forks} increases.\\
+In OSS, a project \emph{fork} has at times carried negative connotations, and has even been referred to as a hazzard\cite{kogut2001open}. In the context of Git and GitHub, however, a \emph{fork} is a positive occurrence for a project, as it signifies greater project involvement. As Git allows for easy merging of \emph{forks}, code contributions in the form of defect fixes can be incorporated quickly. Because of this, it is expected that \emph{Issue Resolution Time} will decrease as the number of \emph{forks} increases.\\
 
 The Apache Project noted that a rapid response to problems can be obtained because OSS is not bound to release schedules in the same way commercial software is. ``Patches'' may be released at any time, by any member of the community\cite{mockus2000case}. ``Patches"" in the context of GitHub could be equated to Pull Requests.\\
 
-This is, ultimetely, a proof of ``Linus Law"\cite{raymond1999cathedral} in the context of GitHub. In other words, the more exposure the code gets (in terms of forks), the easier bugs will be to find and fix.\\
+This is, ultimately, a proof of ``Linus Law"\cite{raymond1999cathedral} in the context of GitHub. In other words, the more exposure the code gets (in terms of forks), the easier bugs will be to find and fix.\\
 
 \textbf{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude}\\
 Research into the Apache Server project observed that there were far more \emph{Issue Reporters} than there were code \emph{Committers}\cite{mockus2000case}. The Apache Server project is an excellent case study in this type of Developer Hierarchy. Apache is built around a small set of {\it Core Developers}, followed by {\it Defect Repairers} and {\it Defect Reporters}. Each level of this hierarchy brings with it an order of magnitude increase in number of participants. The 10-15 {\it Core Developers} contribute around 80\% of the new functionality, while the rest of the 400 code contributors focus primarily on bug fixes. The {\it Defect Reporters} were by far the largest group, with over 3000 individuals submitting bug reports.\\
@@ -59,13 +64,13 @@ Because issue reporting is of low risk to the code base, but has potentially hig
 \subsection{Research Questions}
 
 \textbf{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
-A smal core of developers, however, seems to be a historial fact of OSS development\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?\\
+A smal core of developers, however, seems to be a historical fact of OSS development\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?\\
 
 \textbf{Research Question 2: How is GitHub changing the OSS process?}\\
-The socal aspects of GitHub are an important part of the experience\cite{dabbish2012social}. User interactions and social pressures can drive OSS development in interesting ways. Social aspects of OSS development have existed before GitHub, with mailing lists\cite{mockus2000case}, gift giving mechanisms\cite{bergquist2008power}, and other code hosting sites. What is GitHub doing to facilitate change on OSS development, and how does it see OSS development changing moving forward?\\
+The social aspects of GitHub are an important part of the experience\cite{dabbish2012social}. User interactions and social pressures can drive OSS development in interesting ways. Social aspects of OSS development have existed before GitHub, with mailing lists\cite{mockus2000case}, gift giving mechanisms\cite{bergquist2008power}, and other code hosting sites. What is GitHub doing to facilitate change on OSS development, and how does it see OSS development changing moving forward?\\
 
 \textbf{Research Question 3: Can GitHub be used for more that code artifacts?}\\
-The Object Managment Group\textregistered\footnote{http://www.omg.org} computer industry consortium focused on technology standards. Potential standard summission teams must go through a vetting process\cite{kobryn1999uml} which allows industry representatives to provide feedback on the standard. Gathering and recording this feedback is a challenge, but GitHub's issue tracking system may be able to streamline the process.
+The Object Management Group\textregistered\footnote{http://www.omg.org} computer industry consortium focused on technology standards. Potential standard submission teams must go through a vetting process\cite{kobryn1999uml} which allows industry representatives to provide feedback on the standard. Gathering and recording this feedback is a challenge, but GitHub's issue tracking system may be able to streamline the process.
 
 \section{Methods}
 \subsection{Collection and Storage}
@@ -82,7 +87,7 @@ Data collection was done using the GitHub REST API\footnote{http://developer.git
 \EndWhile
 \end{algorithmic}
 
-The \textsc{store} function accepts as an input a given random repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is decribed in Figure \ref{fig:er_diagram}.
+The \textsc{store} function accepts as an input a given random repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is described in Figure \ref{fig:er_diagram}.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/er.png}
@@ -92,7 +97,7 @@ The \textsc{store} function accepts as an input a given random repository. The p
 
 Data was collected and analyzed using a Python\footnote{http://python.org/} script. Because the GitHub REST API constrains the number of API calls per hour made by a client, logic was included to pause execution when the allotment was exhausted.
 
-Matplotlib\cite{Hunter2007}, a 2D graphics package for Python, was used to render graphs and charts. NumPY and SciPY\cite{scipy} were used for data analysis calculations, such as correllation coefficients.
+Matplotlib\cite{Hunter2007}, a 2D graphics package for Python, was used to render graphs and charts. NumPY and SciPY\cite{scipy} were used for data analysis calculations, such as correlation coefficients.
 
 All source code and materials used in data collection and analysis are hosted at GitHub (naturally!), and may be accessed by the following URL: \url{https://github.com/kevinpeterson/github-process-research}
 
@@ -101,15 +106,15 @@ Where the Set $S$ is the random GitHub repository sample. Each randomly collecte
 
 Given the total set of attributes $A$, each individual attribute set can be denoted as $A_j$. Each individual attribute processed by some aggregate function $f$, or $f(  A_j )$. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}.
 
-Results are then averaged over all repositories, yeilding:
+Results are then averaged over all repositories, yielding:
 \[ \frac{\sum\limits_{i=1}^{n} f(  A_{S{_i}j}  ) } {n} \]
 
-The individual attrubites of $A$, or $A_j$, are described below:\\
+The individual attributes of $A$, or $A_j$, are described below:\\
 \textit{Issues:}
 The number of issues posted to a repository's issue tracker\footnote{https://github.com/blog/411-github-issue-tracker}.\\
 
 \textit{Commits:}
-The number of individual source code commits to a repository. It is important to note that a textit{commit} is a single transaction that changes the code contents of a repository. Actual commit ``size'' (lines of code modified, for examlple), is not taken into account.
+The number of individual source code commits to a repository. It is important to note that a textit{commit} is a single transaction that changes the code contents of a repository. Actual commit ``size'' (lines of code modified, for example), is not taken into account.
 
 \textit{Closed Issues:}
 The number of issues in a repository in a state of \textsc{closed} at the time of processing.
@@ -118,7 +123,7 @@ The number of issues in a repository in a state of \textsc{closed} at the time o
 The number of issues in a repository in a state of \textsc{open} at the time of processing.
 
 \textit{Issue Close Time:}
-The average time taken to close a given issue in a repository. Non-\textsc{closed} issues were not couted.
+The average time taken to close a given issue in a repository. Non-\textsc{closed} issues were not counted.
 
 The average is calculated using the following method. Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds.
 
@@ -128,7 +133,7 @@ The average is calculated using the following method. Let $d(x)$ be a function t
 The number of distinct users that have opened at least one \textit{Issue}.
 
 \textit{Committers:}
-The number of distinct users that have summitted at least one \textit{Commit}.
+The number of distinct users that have summited at least one \textit{Commit}.
 
 \section{Results}
 
@@ -159,14 +164,14 @@ The sample ($N = 1000$) GitHub repositories were analyzed, out of a total of 5.7
 
 \subsection{Hypotheses}
 \textbf{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
-A correlation coefficient of \input{watcher_forks_scatterplot-correlation} was observed betwee the number of Watchers and Forks of a repository. This suggests that a correlation between Watchers and Forks exists.
+A correlation coefficient of \input{watcher_forks_scatterplot-correlation} was observed between the number of Watchers and Forks of a repository. This suggests that a correlation between Watchers and Forks exists.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/watcher_forks_scatterplot.png}
 \caption{Repostitory watchers and forks}
 \end{figure}
 
-The data reinforces the hypothesis, as does other research in the area. Even though there are aguments that the number of Forks is the true measure of project success\cite{baudry2012towards}, the data suggests that the two measures are related. Also, \textit{Dabbish et al.} have noted that the number of Watches can be a key for others to gauge interest in a project, and thus determine if they should participate \cite{dabbish2013leveraging}. If the number of Watchers of a repository serves as a social cue for participation, even ``passive'' involvement with a project (Watching) could influence the ``active'' participation (Forking). This could possibly contribute to the correlation of the two variables.\\
+The data reinforces the hypothesis, as does other research in the area. Even though there are arguments that the number of Forks is the true measure of project success\cite{baudry2012towards}, the data suggests that the two measures are related. Also, \textit{Dabbish et al.} have noted that the number of Watches can be a key for others to gauge interest in a project, and thus determine if they should participate \cite{dabbish2013leveraging}. If the number of Watchers of a repository serves as a social cue for participation, even ``passive'' involvement with a project (Watching) could influence the ``active'' participation (Forking). This could possibly contribute to the correlation of the two variables.\\
 
 \textbf{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
 
@@ -178,7 +183,7 @@ The data reinforces the hypothesis, as does other research in the area. Even tho
 
 No significant correlation was found between the number of repository forks and issue resolution time. It is important to note, however, that issue resolution time is not necessarily related to software product quality in the context of GitHub. We can assert that for serveral reasons. \textit{First}, GitHub issues are not necessarily product defects. Issues may be feature requests. TODOs, or general support questions. \textit{second}, GitHub projects may have primary issue tracking services elsewhere, while using the GitHub issues as secondary services or not at all. \textit{Third}, Pham \textit{et al.} explore an emerging ``testing culture'' in GitHub -- something which could have sizable impacts on software quality but wouldn't necessarily be reflected in this metric \cite{phamcreating}.\\
 
-It is possible that other factors, such as issue prioritization, may have a greater impact on issue resolution time. Research does support a relationship\cite{mockus2002two} between the stated priority and fix interval. As the GitHub issue tracker can only support prioritization by free-text \textit{tags} placed on issues, it is not feasable to programmattically gather issue priority metrics.
+It is possible that other factors, such as issue prioritization, may have a greater impact on issue resolution time. Research does support a relationship\cite{mockus2002two} between the stated priority and fix interval. As the GitHub issue tracker can only support prioritization by free-text \textit{tags} placed on issues, it is not feasable to programmattically gather issue priority metrics.\\
 
 \textbf{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude.}\\
 Data does not support an exponentially increasing number of distinct Issue Reporters as compared to distinct Committers. 
@@ -214,7 +219,7 @@ There does appear to be evidence of a small set of core developers, denoted by t
 \label{fig:committers_histogram}
 \end{figure}
 
-When looking strictly at the number of committers to a repository, however, the notion of a small set of core Committers is strongly supported, as the vast majority of repositoris have fewer than 10 committers (figure \ref{fig:committers_histogram}).\\
+When looking strictly at the number of committers to a repository, however, the notion of a small set of core Committers is strongly supported, as the vast majority of repositories have fewer than 10 committers (figure \ref{fig:committers_histogram}).\\
 
 \textbf{Research Question 2: How is GitHub changing the OSS process?}\\
 Thung \textit{et al.} show that the social coding aspects of GitHub -- specifically the developer-to-developer connectivity -- enable high collaboration rates.\cite{thung2013network} In fact, the developer connectivity was shown to be higher than SourceForge and even Facebook. In a recent interview with GitHub staff, the social aspects of GitHub are referred to as ``unique and powerful\cite{begel2013social},'' which seems to suggest that this is a strong underlying product goal for.\\
@@ -234,7 +239,7 @@ To further analyze this research question, and to explore further the GitHub ``s
 \textbf{Research Question 3: Can GitHub be used for more that code artifacts?}\\
 The OMG\textregistered standardization process is a process by which products strive to produce an interoperability statndard by way of an industry standards consortium.\cite{omgTechProcess}
 The standardization process itself aims to, at its conclusion, produce a set of model artificats containing sufficient detail such that when interpreted and implemented, produce interoperable software.
-At a conceptual level, this can be thought of as a software requirements engineering process as much as a standardization process. If so,  of the five main tasks of requirements engineering, Elicitation, Analysis and Negotiation, Documentation, Validation, and Management,\cite{sommerville1998requirements} we can show that GitHub is an apporiate forum for many of them.\\
+At a conceptual level, this can be thought of as a software requirements engineering process as much as a standardization process. If so,  of the five main tasks of requirements engineering, Elicitation, Analysis and Negotiation, Documentation, Validation, and Management,\cite{sommerville1998requirements} we can show that GitHub is an appropriate forum for many of them.\\
 
 As a case study, the CTS2 OMG\textregistered Specification\cite{cts2} used a GitHub issue tracker\footnote{https://github.com/cts2/cts2-specification/issues} to track specification changes. Elicitation, Analysis and Negotiation were natural fits for the issue tracker. This was chosen in part because the barrier to participation was very small (only a GitHub account was needed), and issues tracker itself allowed for dialogs in the form of comments. Because customer involvement is critical to these activities\cite{paetsch2003requirements}, ease of contribution was a main concern. OMG has a predescribed format for requirements Documentation, but using the GitHub issue API\footnote{http://developer.github.com/v3/issues/}, much of this documentation can be automated.
 Validation and Management are areas of requirements engineering that GitHub has interesting solutions for. First, in order to track (or validate) changes to the specification, when the actual specification is modified, the commit that modified it can be traced to a named issue by simply putting the issue number in the commit log. This level of traceability is powerful, as it allows every change to the specification artifacts to be tracked consistently to an open issue. As the normal OMG process proceeds, requirements can be managed through ``tagging'' the issues. By allowing issues to be grouped by arbitrary tags, users are more free to adapt their own workflow. For instance, when community voting on issues needed to be done for CTS2, a simple ``ready for vote'' tag signified to the voting board exactly what was under consideration.
