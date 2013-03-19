@@ -36,7 +36,9 @@ Open Source Software (OSS) has fundamentally changed how we view the Software De
 
 A case study of the Apache Server project\cite{mockus2000case} shows that a dedicated community can produce software that rivals or exceeds commercial offerings. This study showed that even in the unstructured context of OSS, certain structures, hierarchies, and codes of conduct emerge. Contrast the Apache Server project to a successful project on GitHub. Although the spirit and intent may be the same, the tool set is drastially different. The intent of this paper is to explore how GitHub facilitates this process, and also how it may cause it to evolve.
 
-\subsection{Hypothesis}
+\subsection{Hypotheses}
+The following hypotheses
+
 \textbf{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
 In Open Source Software, a feeling of community belonging can be intrinsicly motivating to developers\cite{lakhani2003hackers}. This feeling of belonging can be expressed passively, as a \emph{watch}, or actively, as a \emph{fork} of a repository. As \emph{watches} don't necessarily signal intent to contribute, a positive direction for an OSS project is to not only increase the number of \emph{watchers}, but also the number of \emph{forks}. As both signify a general general interest in the project, it is expected that there be some correllation between the two.\\
 
@@ -86,8 +88,6 @@ The \textsc{store} function accepts as an input a given random repository. The p
 \label{fig:er_diagram}
 \end{figure}
 
-
-
 \subsection{Analysis}
 
 Where the Set $S$ is the random GitHub repository sample. Each randomly collected repository $S_i$ contains a Set of attriubtes $A$. Thus, a set of attributes for a given repository can be referred to as $A_{S_i}$.
@@ -98,29 +98,30 @@ Results are then averaged over all repositories, yeilding:
 \[ \frac{\sum\limits_{i=1}^{n} f(  A_{S{_i}j}  ) } {n} \]
 
 The individual attrubites of $A$, or $A_j$, are described below:\\
-\textit{Issues}\\
-The number of issues posted to a repository's issue tracker\footnote{https://github.com/blog/411-github-issue-tracker}.
+\textit{Issues:}
+The number of issues posted to a repository's issue tracker\footnote{https://github.com/blog/411-github-issue-tracker}.\\
 
-\textit{Commits}\\
-The number of individual source code commits to a repository.
+\textit{Commits:}
+The number of individual source code commits to a repository. It is important to note that a textit{commit} is a single transaction that changes the code contents of a repository. Actual commit ``size'' (lines of code modified, for examlple), is not taken into account.
 
-\textit{Closed Issues}\\
+\textit{Closed Issues:}
 The number of issues in a repository in a state of \textsc{closed} at the time of processing.
 
-\textit{Open Issues}\\
+\textit{Open Issues:}
 The number of issues in a repository in a state of \textsc{open} at the time of processing.
 
-\textit{Issue Close Time}\\
+\textit{Issue Close Time:}
 The average time taken to close a given issue in a repository. Non-\textsc{closed} issues were not couted.
 
 The average is calculated using the following method. Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds.
 
 \[ d\left( \frac{\sum\limits_{i=1}^{n} s(i_{\textrm{closed}}) - s(i_{\textrm{opened}})  } {n} \right) \]
 
-\textit{Issue Creators}\\
+\textit{Issue Creators:}
+The number of distinct users that have opened at least one \textit{Issue}.
 
-\textit{Committers}\\
-
+\textit{Committers:}
+The number of distinct users that have summitted at least one \textit{Commit}.
 
 \section{Results}
 
@@ -134,7 +135,7 @@ Variable & Mean & Min & Max & Std. Dev. \\
 \input{summary_statistics}
 \hline
 \end{tabular}
-N = 100 Repositories
+N = 1000 Repositories
 \caption{GitHub Summary Statistics}
 \label{table:summary_stats}
 \end{center}
@@ -147,6 +148,8 @@ Table \ref{table:summary_stats} describes summary statistics of the repository v
 \end{equation}
 All measured variables demonstrated this characteristic.
 
+The sample ($N = 1000$) GitHub repositories were analyzed, out of a total of 5.7 million\cite{githubPress}.
+
 \subsection{Hypotheses}
 \textbf{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
 A correlation coefficient of \input{watcher_forks_scatterplot-correlation} was observed betwee the number of Watchers and Forks of a repository. This suggests that a correlation between Watchers and Forks exists.
@@ -154,14 +157,17 @@ A correlation coefficient of \input{watcher_forks_scatterplot-correlation} was o
 \includegraphics[height=3in,width=3in]{images/watcher_forks_scatterplot.png}
 \caption{Repostitory watchers and forks}
 \end{figure}
-The data reinforces the hypothesis, as does other research in the area. Even though there are aguments that the number of Forks is the true measure of project success\cite{baudry2012towards}, the data suggests that the two measures are related. Also, \textit{Dabbish et al.} have noted that the number of Watches can be a key for others to gauge interest in a project, and thus determine if they should participate \cite{dabbish2013leveraging}. If the number of Watchers of a repository serves as a social cue for participation, even ``passive'' involvement with a project (Watching) could influence the ``active'' participation (Forking). This could possibly contribute to the correlation of the two variables.
+The data reinforces the hypothesis, as does other research in the area. Even though there are aguments that the number of Forks is the true measure of project success\cite{baudry2012towards}, the data suggests that the two measures are related. Also, \textit{Dabbish et al.} have noted that the number of Watches can be a key for others to gauge interest in a project, and thus determine if they should participate \cite{dabbish2013leveraging}. If the number of Watchers of a repository serves as a social cue for participation, even ``passive'' involvement with a project (Watching) could influence the ``active'' participation (Forking). This could possibly contribute to the correlation of the two variables.\\
 
 \textbf{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
-No significant correlation was found between the number of repository forks and issue resolution time. It is important to note, however, that issue resolution time is not necessarily related to software product quality in the context of GitHub. We can assert that for serveral reasons. \textit{First}, GitHub issues are not necessarily product defects. Issues may be feature requests. TODOs, or general support questions. \textit{second}, GitHub projects may have primary issue tracking services elsewhere, while using the GitHub issues as secondary services or not at all. \textit{Third}, Pham \textit{et al.} explore an emerging ``testing culture'' in GitHub -- something which could have sizable impacts on software quality but wouldn't necessarily be reflected in this metric \cite{phamcreating}.
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_close_time_forks_scatterplot.png}
 \caption{Repostitory issue close time and number of forks}
+\label{fig:issue_close_time_forks_scatterplot}
 \end{figure}
+No significant correlation was found between the number of repository forks and issue resolution time. It is important to note, however, that issue resolution time is not necessarily related to software product quality in the context of GitHub. We can assert that for serveral reasons. \textit{First}, GitHub issues are not necessarily product defects. Issues may be feature requests. TODOs, or general support questions. \textit{second}, GitHub projects may have primary issue tracking services elsewhere, while using the GitHub issues as secondary services or not at all. \textit{Third}, Pham \textit{et al.} explore an emerging ``testing culture'' in GitHub -- something which could have sizable impacts on software quality but wouldn't necessarily be reflected in this metric \cite{phamcreating}.\\
+
+It is possible that other factors, such as issue prioritization, may have a greater impact on issue resolution time. Research does support a relationship\cite{mockus2002two} between the stated priority and fix interval. As the GitHub issue tracker can only support prioritization by free-text \textit{tags} placed on issues, it is not feasable to programmattically gather issue priority metrics.
 
 \textbf{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude.}\\
 \begin{figure}
@@ -169,8 +175,10 @@ No significant correlation was found between the number of repository forks and 
 \caption{Repostitory issue reporters and committers}
 \label{fig:issue_reporters_committers_scatterplot}
 \end{figure}
-Data does not support an exponentially increasing number of distinct Issue Reporters as compared to distinct Committers. Figure\ref{fig:issue_reporters_committers_scatterplot}, does however suggest that that the two variables may be related. The hypothesis implies that there will be a correlation between the two variables -- which is demonstrated by a reasonably strong correlation cofficient of \input{issue_reporters_committers_scatterplot-correlation}. This does not seem to align with findings in the Apache Server project\cite{mockus2000case}. More investigation would be necessary to further examine this finding.
+Data does not support an exponentially increasing number of distinct Issue Reporters as compared to distinct Committers. 
+As shown in Figure\ref{fig:issue_reporters_committers_scatterplot}, the slope of the relationship between the two variables is less than one. This does not seem to completely align with findings in the Apache Server project\cite{mockus2000case}. 
 
+Figure\ref{fig:issue_reporters_committers_scatterplot}, does however suggest, however, that that the two variables may be related. The hypothesis implies that there will be a correlation between the two variables -- which is demonstrated by a reasonably strong correlation cofficient of \input{issue_reporters_committers_scatterplot-correlation}. More investigation would be necessary to further examine this finding.\\
 
 \subsection{Research Questions}
 \textbf{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
@@ -183,7 +191,7 @@ The data in figure \ref{fig:committers_percentage_pie_chart} represents commit p
 
  \[ P = \left\{ \frac{ C_u } { |C| } \times 100 \Big| u \in U \right\} \]
 
-where, given the set of commits of a repository $C$ and the set of committers to the repository $U$, the commits by each user $C_u$ are divided by the total number of commits $|C|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignments is plotted on figure \ref{fig:committers_percentage_pie_chart}.
+where, given the set of commits of a repository $C$ and the set of committers to the repository $U$, the commits by each user $C_u$ are divided by the total number of commits $|C|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignments is plotted on Figure \ref{fig:committers_percentage_pie_chart}.
 
 There does appear to be evidence of a small set of core developers, denoted by the relatively high percentage of developers that have authored $95-100\%$ of the commits of a given repository. Most notably, however, is that the data shows that by a large percentage of developers committed small amounts ($0-5\%$ of the total repository commits). This means that a small core are not entirely monopolizing the commits, but rather opportunity exists for users to contribute, even if in small ways.
 
@@ -193,15 +201,27 @@ There does appear to be evidence of a small set of core developers, denoted by t
 \label{fig:committers_histogram}
 \end{figure}
 
-When looking strictly at the number of committers to a repository, however, the notion of a small set of core Committers is strongly supported, as the vast majority of repositoris have fewer than 10 committers (figure \ref{fig:committers_histogram}).
+When looking strictly at the number of committers to a repository, however, the notion of a small set of core Committers is strongly supported, as the vast majority of repositoris have fewer than 10 committers (figure \ref{fig:committers_histogram}).\\
 
 \textbf{Research Question 2: How is GitHub changing the OSS process?}\\
-Thung \textit{et al.} show that the social coding aspects of GitHub -- specifically the developer-to-developer connectivity -- enable high collaboration rates.\cite{thung2013network} In fact, the developer connectivity was shown to be higher than SourceForge and even Facebook. In a recent interview with GitHub staff, the social aspects of GitHub are referred to as ``unique and powerful\cite{begel2013social},'' which seems to suggest that this is a strong underlying product goal for.
+Thung \textit{et al.} show that the social coding aspects of GitHub -- specifically the developer-to-developer connectivity -- enable high collaboration rates.\cite{thung2013network} In fact, the developer connectivity was shown to be higher than SourceForge and even Facebook. In a recent interview with GitHub staff, the social aspects of GitHub are referred to as ``unique and powerful\cite{begel2013social},'' which seems to suggest that this is a strong underlying product goal for.\\
+
+Ye also observed\cite{ye2003toward} that the contribution environment, or ``society,'' is important in providing a framework for develper trust building:
+\begin{quote}
+Only in a society where technical supremacy is highly appreciated can developers acquire good reputations among their peers by displaying their skills through free distribution, and often wider acceptance, of their systems.The good reputation attracts attention, trust, and cooperation from others and lays the foundation for advancing the original developers agenda and the establishment and development of OSS communities. 
+\end{quote}
+
+To further analyze this research question, and to explore further the GitHub ``society'' and its impact on OSS development, an interview with GitHub staff was conducted.\\ 
+\textit{Interview Q1: How is GitHub changing the way OSS is being developed?}\\
+
+\textit{Interview Q2: Does GitHub aim to change the way OSS is developed, or simply facilitate?}\\
+
+\textit{Interview Q3: How is GitHub changing the way OSS is being developed?}\\
 
 \textbf{Research Question 3: Can GitHub be used for more that code artifacts?}\\
 The OMG\textregistered standardization process is a process by which products strive to produce an interoperability statndard by way of an industry standards consortium.\cite{omgTechProcess}
 The standardization process itself aims to, at its conclusion, produce a set of model artificats containing sufficient detail such that when interpreted and implemented, produce interoperable software.
-At a conceptual level, this can be thought of as a software requirements engineering process as much as a standardization process. If so,  of the five main tasks of requirements engineering, Elicitation, Analysis and Negotiation, Documentation, Validation, and Management,\cite{sommerville1998requirements} we can show that GitHub is an apporiate forum for many of them.
+At a conceptual level, this can be thought of as a software requirements engineering process as much as a standardization process. If so,  of the five main tasks of requirements engineering, Elicitation, Analysis and Negotiation, Documentation, Validation, and Management,\cite{sommerville1998requirements} we can show that GitHub is an apporiate forum for many of them.\\
 
 As a case study, the CTS2 OMG\textregistered Specification\cite{cts2} used a GitHub issue tracker\footnote{https://github.com/cts2/cts2-specification/issues} to track specification changes. Elicitation, Analysis and Negotiation were natural fits for the issue tracker. This was chosen in part because the barrier to participation was very small (only a GitHub account was needed), and issues tracker itself allowed for dialogs in the form of comments. Because customer involvement is critical to these activities\cite{paetsch2003requirements}, ease of contribution was a main concern. OMG has a predescribed format for requirements Documentation, but using the GitHub issue API\footnote{http://developer.github.com/v3/issues/}, much of this documentation can be automated.
 Validation and Management are areas of requirements engineering that GitHub has interesting solutions for. First, in order to track (or validate) changes to the specification, when the actual specification is modified, the commit that modified it can be traced to a named issue by simply putting the issue number in the commit log. This level of traceability is powerful, as it allows every change to the specification artifacts to be tracked consistently to an open issue. As the normal OMG process proceeds, requirements can be managed through ``tagging'' the issues. By allowing issues to be grouped by arbitrary tags, users are more free to adapt their own workflow. For instance, when community voting on issues needed to be done for CTS2, a simple ``ready for vote'' tag signified to the voting board exactly what was under consideration.
