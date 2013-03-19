@@ -5,6 +5,7 @@
 \usepackage{fixltx2e}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
+\usepackage{url}
 \MakeRobust{\Call}
 \usepackage{amsmath}
 \setlength\parindent{0pt}
@@ -26,10 +27,11 @@ Rochester, MN  55905\\
 
 \begin{abstract}
 Open Source Software (OSS) has produced many successful projects. The development process by which these projects are produced is generally unstructured compared to commercial software -- but a definite pattern does arrive, and is no less a pattern. GitHub, a popular OSS code hosting website, and Git, the site's SCM of choice, may have the potential to fundamentally change ths process.\\
-By analyzing a subset of GitHub repositories, this report will show how GitHub has influenced some very intrinsic aspects of traditional OSS develoment, such as developer hierarchies and issue close velicity. We find that... TODO
+By analyzing a subset of GitHub repositories, this report will show how GitHub has influenced some very intrinsic aspects of traditional OSS develoment, such as developer hierarchies and issue close velicity. We find that many of the traditional aspects of OSS development remain, such most project developlment is done by a small group of core developers. Others assumptions about project hierarchy, such as a large number of Issue Reporters compared to Committers, seems unsupported by the data.
+
 \end{abstract}
 
-\noindent \textbf{Keywords.} Git, GitHub, OpenSource
+\noindent \\\textbf{Keywords.} Git, GitHub, Open Source
 
 \section{Introduction}
 Open Source Software (OSS) has fundamentally changed how we view the Software Development Process\cite{raymond1999cathedral}. OSS projects are not only viable, but successful and thriving. 
@@ -67,7 +69,7 @@ The Object Managment Group\textregistered\footnote{http://www.omg.org} computer 
 
 \section{Methods}
 \subsection{Collection and Storage}
-Data collection was done using the GitHub REST API\footnote{http://developer.github.com/v3/}. A random selection of 1000 repositories was selected using the following algorithm:\footnote{https://github.com/kevinpeterson/github-process-research/blob/master/code/research.py}
+Data collection was done using the GitHub REST API\footnote{http://developer.github.com/v3/}. A random selection of 1000 repositories was selected using the following algorithm:
 
 \begin{algorithmic}
 \While{$i < 1000$} 
@@ -80,7 +82,7 @@ Data collection was done using the GitHub REST API\footnote{http://developer.git
 \EndWhile
 \end{algorithmic}
 
-The \textsc{store} function accepts as an input a given random repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is decribed in figure \ref{fig:er_diagram}.
+The \textsc{store} function accepts as an input a given random repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is decribed in Figure \ref{fig:er_diagram}.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/er.png}
@@ -88,8 +90,13 @@ The \textsc{store} function accepts as an input a given random repository. The p
 \label{fig:er_diagram}
 \end{figure}
 
-\subsection{Analysis}
+Data was collected and analyzed using a Python\footnote{http://python.org/} script. Because the GitHub REST API constrains the number of API calls per hour made by a client, logic was included to pause execution when the allotment was exhausted.
 
+Matplotlib\cite{Hunter2007}, a 2D graphics package for Python, was used to render graphs and charts. NumPY and SciPY\cite{scipy} were used for data analysis calculations, such as correllation coefficients.
+
+All source code and materials used in data collection and analysis are hosted at GitHub (naturally!), and may be accessed by the following URL: \url{https://github.com/kevinpeterson/github-process-research}
+
+\subsection{Analysis}
 Where the Set $S$ is the random GitHub repository sample. Each randomly collected repository $S_i$ contains a Set of attriubtes $A$. Thus, a set of attributes for a given repository can be referred to as $A_{S_i}$.
 
 Given the total set of attributes $A$, each individual attribute set can be denoted as $A_j$. Each individual attribute processed by some aggregate function $f$, or $f(  A_j )$. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}.
@@ -153,43 +160,49 @@ The sample ($N = 1000$) GitHub repositories were analyzed, out of a total of 5.7
 \subsection{Hypotheses}
 \textbf{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
 A correlation coefficient of \input{watcher_forks_scatterplot-correlation} was observed betwee the number of Watchers and Forks of a repository. This suggests that a correlation between Watchers and Forks exists.
+
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/watcher_forks_scatterplot.png}
 \caption{Repostitory watchers and forks}
 \end{figure}
+
 The data reinforces the hypothesis, as does other research in the area. Even though there are aguments that the number of Forks is the true measure of project success\cite{baudry2012towards}, the data suggests that the two measures are related. Also, \textit{Dabbish et al.} have noted that the number of Watches can be a key for others to gauge interest in a project, and thus determine if they should participate \cite{dabbish2013leveraging}. If the number of Watchers of a repository serves as a social cue for participation, even ``passive'' involvement with a project (Watching) could influence the ``active'' participation (Forking). This could possibly contribute to the correlation of the two variables.\\
 
 \textbf{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
+
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_close_time_forks_scatterplot.png}
 \caption{Repostitory issue close time and number of forks}
 \label{fig:issue_close_time_forks_scatterplot}
 \end{figure}
+
 No significant correlation was found between the number of repository forks and issue resolution time. It is important to note, however, that issue resolution time is not necessarily related to software product quality in the context of GitHub. We can assert that for serveral reasons. \textit{First}, GitHub issues are not necessarily product defects. Issues may be feature requests. TODOs, or general support questions. \textit{second}, GitHub projects may have primary issue tracking services elsewhere, while using the GitHub issues as secondary services or not at all. \textit{Third}, Pham \textit{et al.} explore an emerging ``testing culture'' in GitHub -- something which could have sizable impacts on software quality but wouldn't necessarily be reflected in this metric \cite{phamcreating}.\\
 
 It is possible that other factors, such as issue prioritization, may have a greater impact on issue resolution time. Research does support a relationship\cite{mockus2002two} between the stated priority and fix interval. As the GitHub issue tracker can only support prioritization by free-text \textit{tags} placed on issues, it is not feasable to programmattically gather issue priority metrics.
 
 \textbf{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude.}\\
+Data does not support an exponentially increasing number of distinct Issue Reporters as compared to distinct Committers. 
+As shown in Figure\ref{fig:issue_reporters_committers_scatterplot}, the slope of the relationship between the two variables is less than one. This does not seem to completely align with findings in the Apache Server project\cite{mockus2000case}. 
+
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_reporters_committers_scatterplot.png}
 \caption{Repostitory issue reporters and committers}
 \label{fig:issue_reporters_committers_scatterplot}
 \end{figure}
-Data does not support an exponentially increasing number of distinct Issue Reporters as compared to distinct Committers. 
-As shown in Figure\ref{fig:issue_reporters_committers_scatterplot}, the slope of the relationship between the two variables is less than one. This does not seem to completely align with findings in the Apache Server project\cite{mockus2000case}. 
 
 Figure\ref{fig:issue_reporters_committers_scatterplot}, does however suggest, however, that that the two variables may be related. The hypothesis implies that there will be a correlation between the two variables -- which is demonstrated by a reasonably strong correlation cofficient of \input{issue_reporters_committers_scatterplot-correlation}. More investigation would be necessary to further examine this finding.\\
 
 \subsection{Research Questions}
 \textbf{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
+The data in figure \ref{fig:committers_percentage_pie_chart} represents commit percentage breakdown. The inner percentages represent the percentage of committers in a project that that have committed the outer percentage amount of commits to that project, or
+
+ \[ P = \left\{ \frac{ C_u } { |C| } \times 100 \Big| u \in U \right\} \]
+
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/committers_percentage_pie_chart.png}
 \caption{Individual committer commit percentage per repository}
 \label{fig:committers_percentage_pie_chart}
 \end{figure}
-The data in figure \ref{fig:committers_percentage_pie_chart} represents commit percentage breakdown. The inner percentages represent the percentage of committers in a project that that have committed the outer percentage amount of commits to that project, or
-
- \[ P = \left\{ \frac{ C_u } { |C| } \times 100 \Big| u \in U \right\} \]
 
 where, given the set of commits of a repository $C$ and the set of committers to the repository $U$, the commits by each user $C_u$ are divided by the total number of commits $|C|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignments is plotted on Figure \ref{fig:committers_percentage_pie_chart}.
 
