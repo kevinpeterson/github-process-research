@@ -87,7 +87,7 @@ Data collection was done using the GitHub REST API\footnote{http://developer.git
 \State $repos \gets git\_search(word)$
 \State $j \gets $%\Call{random}{0... \Call{size}{repos}}$
 \State $repo \gets repos_j$
-\State %\Call{store}{repo}
+\State \Call{store}{repo}
 \EndWhile
 \end{algorithmic}
 \end{algorithm}
@@ -107,13 +107,28 @@ Matplotlib\cite{Hunter2007}, a 2D graphics package for Python, was used to rende
 All source code and materials used in data collection and analysis are hosted at GitHub (naturally!), and may be accessed by the following URL: \url{https://github.com/kevinpeterson/github-process-research}
 
 \subsection{Analysis}
-Where the Set $S$ is the random GitHub repository sample. Each randomly collected repository $S_i$ contains a Set of attributes $A$. Thus, a set of attributes for a given repository can be referred to as $A_{S_i}$.
+In this context, a \textit{Repository} is defined as a Set of \textit{Attributes}. An \textit{Attribute} is a metric of interest. See Section \ref{sec:attributes} for further information on individual \textit{Attributes}. These metrics of interest are used as an Indexing Set $A^\prime$, and have labels as follows:
 
-Given the total set of attributes $A$, each individual attribute set can be denoted as $A_j$. Each individual attribute processed by some aggregate function $f$, or $f(  A_j )$. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}. This analysis is applied to all $n$ repositories for which data was collected. Results were then averaged over all repositories. Each attribute is analyzed independently, so given:
-\[ g(j) = \frac{\sum\limits_{i=1}^{n} f(  A_{S{_i}j}  ) } {n} \]
+\[A^\prime = \{i, c, i^\prime, i^{\prime\prime}, \Delta, \alpha, \beta\}\]
+
+Where $i$ = {\textit{Issues}, $c$ = {\textit{Commits}, $i^\prime$ = {\textit{Closed Issues}, $i^{\prime\prime}$ = {\textit{Open Issues}, $\Delta$ = {\textit{Issue Close Time}, $\alpha$ = {\textit{Issue Creators}, and $\beta$ = {\textit{Committers}.
+
+All analyzed \textit{Respositories} can be thought of as the Indexed Family of \textit{Attribute} Sets $A$, or a Set of Sets of \textit{Attributes}. Let the Set of these Sets of \textit{Attribute} Sets be called $S$, or the \textit{Repository Sample}. We can label the \textit{Attribute} Sets by arbitrary integers 0 through $|S|$, or:
+\[ \{A_i\}_{i \in \{0,1,2 ... |S|\} }\]
+
+In this way, we can reference a Set of \textit{Attributes} (or, an individual \textit{Repository}), by $A_i$. 
+
+Going further, we can also denote an individual \textit{Attribute} of a given \textit{Repository} by:
+\[ \{A_{(i,r)}\}_{(i,r) \in A^\prime \times \{0,1,2 ... |S|\} } \]
+or, $A_{i,r}$. For example, $A_{\Delta,10}$ would denote the value of the \textit{Issue Close Time} ($\Delta$) of Repository \textit{10}.
+
+Each individual Attribute processed by some aggregate function $f$, or $f(  A_{i,r} )$. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}. This analysis is applied to all $n$ repositories for which data was collected. Results were then averaged over all repositories. Each attribute is analyzed independently, so given:
+\[ g(j) = \frac{\sum\limits_{r = 0}^{|S|} f(  A_{r,j}  ) }{|S|} \]
 each individual attribute is processed via $g(j)$ and will result in the average of the given aggregate function.
 
-The individual attributes of $A$, or $A_j$, are described below. For detailed summary statistics of these attributes, see Figure  \ref{table:summary_stats}.\\\\
+\subsubsection{Attributes}
+\label{sec:attributes}
+The individual \textit{Attribute} names, or the elements of $A^\prime$, are described below. For detailed summary statistics of these \textit{Attributes}, see Figure  \ref{table:summary_stats}.\\\\
 \noindent \textbf{\textit{Issues:}}
 The number of issues posted to a repository's issue tracker\footnote{https://github.com/blog/411-github-issue-tracker}.
 
@@ -129,11 +144,11 @@ The number of issues in a repository in a state of \textsc{open} at the time of 
 \noindent \textbf{\textit{Issue Close Time:}}
 The average time taken to close a given issue in a repository. Non-\textsc{closed} issues were not counted.\\
 
-The average is calculated using the following method. Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds. The variable $n$ denotes the total number of issues, or $I$, assigned to a particular repository.
+The average is calculated using the following method. Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds. Let $I$ equal the Set of \textit{Issues} in a given repository, with elements comprised of tuples $(\tau, \tau^\prime)$, where $\tau$ is \textit{Issue Open Time} and $\tau^\prime$ is \textit{Issue Close Time}. We calculate \textit{Issue Close Time} by: 
 
-\[ \tau = d\left( \frac{\sum_{i=1}^{n} s(C_{I_i} ) - s(O_{I_i} )  } {n} \right) \]
+\[ \Delta = d\left( \frac{\sum_{i \in I} s( p_{(1)}i ) - s( p_{(2)}i )  } {n} \right) \]
 
-For each issue $I_i$ in $I$, the \textsc{opened\_date} $O_{I_i}$ is subtracted from the \textsc{closed\_date} $C_{I_i}$. The result of this is averaged and converted into a date via $d(x)$, resulting in the average issue close time interval $\tau$.
+Where for each issue $i$ in $I$, the \textit{Issue Open Date} $s( p_{(1)}i)$ is subtracted from the \textit{Issue Close Date} $s( p_{(2)}i)$, and $p_{(1)}i$ and $p_{(2)}i$ denote the elements of the tuple, or \textit{Issue Open Date} and \textit{Issue Close Date}, respectively. The result of this is averaged and converted into a Date via $d(x)$, resulting in the average issue close time interval $\Delta$.
 
 \noindent \textbf{\textit{Issue Creators:}}
 The number of distinct users that have opened at least one \textit{Issue}.
@@ -204,9 +219,15 @@ Figure\ref{fig:issue_reporters_committers_scatterplot}, does however suggest, ho
 
 \subsection{Research Questions}
 \textbf{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
-The data in figure \ref{fig:committers_percentage_pie_chart} represents commit percentage breakdown. The inner percentages represent the percentage of committers in a project that that have committed the outer percentage amount of commits to that project, or
+The data in figure \ref{fig:committers_percentage_pie_chart} represents commit percentage breakdown. The inner percentages represent the percentage of committers in a project that that have committed the outer percentage amount of commits to that project, or:
 
- \[ P = \left\{ \frac{ C_u } { |C| } \times 100 \Big| u \in U \right\} \]
+\begin{equation}
+P = \left\{ \frac{ C_u } { |C| } \times 100 \Big| u \in U \right\}
+\label{eq:commit_percentage}
+\end{equation}
+
+Where $U$ is the Set of \textit{Committers} to a given \textit{Repository} and $C$ is the MultiSet of \textit{Commits} by an individual \textit{Committers} to a given \textit{Repository}, or:
+ \[ \{ C_u \}_{u \in U} \]
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/committers_percentage_pie_chart.png}
@@ -214,7 +235,7 @@ The data in figure \ref{fig:committers_percentage_pie_chart} represents commit p
 \label{fig:committers_percentage_pie_chart}
 \end{figure}
 
-where, given the set of commits of a repository $C$ and the set of committers to the repository $U$, the commits by each user $C_u$ are divided by the total number of commits $|C|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignments is plotted on Figure \ref{fig:committers_percentage_pie_chart}.
+To find the percentages Set $P$ of equation\ref{eq:commit_percentage}, the commits by each user $C_u$ are divided by the total number of commits $|C|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignments is plotted on Figure \ref{fig:committers_percentage_pie_chart}.
 
 There does appear to be evidence of a small set of core developers, denoted by the relatively high percentage of developers that have authored $95-100\%$ of the commits of a given repository. Most notably, however, is that the data shows that by a large percentage of developers committed small amounts ($0-5\%$ of the total repository commits). This means that a small core are not entirely monopolizing the commits, but rather opportunity exists for users to contribute, even if in small ways.
 
