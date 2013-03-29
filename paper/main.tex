@@ -26,9 +26,11 @@ Rochester, MN  55905\\
 \maketitle
 
 \begin{abstract}
-Open Source Software (OSS) has produced many successful projects. The development process by which these projects are produced is generally unstructured compared to commercial software -- but a definite pattern does arrive, and is no less a pattern. GitHub, a popular OSS code hosting website, and Git, the site's Source Code Management (SCM) tool of choice, may have the potential to fundamentally change ths process.
+Open Source Software (OSS) projects, or software projects with publicly available source code, are realizing ever more important roles in both personal and business computing. As such, shifts in the way OSS is developed could have impacts on both the quantity and the quality of OSS projects.
 
-By analyzing a subset of GitHub repositories, this report will show how GitHub has influenced some very intrinsic aspects of traditional OSS development, such as developer hierarchies and issue close velocity. We find that many of the traditional aspects of OSS development remain, such most project development is done by a small group of core developers. Others assumptions about project hierarchy, such as a large number of Issue Reporters compared to Committers, seems unsupported by the data.
+The development process by which these projects are produced is generally unstructured compared to commercial software, but many projects do exhibit general development patterns. GitHub, a popular OSS code hosting website, along with Git, the site's Source Code Management (SCM) tool of choice, may have the potential to fundamentally change this process by facilitating new patterns and opportunities for developers.
+
+By analyzing a subset of GitHub repositories, this report will show how GitHub has influenced some intrinsic aspects of traditional OSS development, such as developer hierarchies and issue close velocity. We find that many of the traditional aspects of OSS development remain, such as most project development is done by a small group of core developers. Other assumptions about project hierarchy, such as a large number of Issue Reporters compared to Committers, seems unsupported by the data.
 \end{abstract}
 
 \noindent \\\textbf{Keywords.} Git, GitHub, Open Source
@@ -36,17 +38,17 @@ By analyzing a subset of GitHub repositories, this report will show how GitHub h
 \section{Introduction}
 Open Source Software (OSS) has fundamentally changed how we view the Software Development Process\cite{raymond1999cathedral}. OSS projects are not only viable, but successful and thriving. 
 
-A case study of the Apache Server project\cite{mockus2000case} shows that a dedicated community can produce software that rivals or exceeds commercial offerings. This study showed that even in the unstructured context of OSS, certain structures, hierarchies, and codes of conduct emerge. Contrast the Apache Server project to a successful project on GitHub. Although the spirit and intent may be the same, the tool set is drastially different. The intent of this work is to explore how GitHub facilitates this process, and also how it may cause it to evolve.
+A case study of the Apache Server project\cite{mockus2000case} shows that a dedicated community can produce software that rivals or exceeds commercial offerings. This study showed that even in the unstructured context of OSS, certain structures, hierarchies, and codes of conduct emerge. Contrast the Apache Server project to a successful project on GitHub. Although the spirit and intent may be the same, the tool set is drastically different. The intent of this work is to explore how GitHub facilitates this process, and also how it may cause it to evolve.
 
 GitHub\footnote{https://github.com/} is a popular code hosting website that uses Git Source Code Management (SCM)\footnote{http://git-scm.com/}. GitHub... Git allows for development to take place in a more distributed manner than previously available in other SCM systems\cite{spinellis2012git}. Git also allows for a variety of work flows\cite{chacon2009pro}. These workflows may be tailored to the individual needs of a project. The Linux Kernel, for example, uses a Dictator and
 Lieutenants Workflow\cite{platschekfloss}, which is hierarchical in nature. Other work flows may be more distributed, or resemble more traditional centralized SCM systems. Although work flow techniques aren't explicitly addressed in this work, it is important to note that work flow change may contribute to \textit{process change}.
 
 To better understand quantitatively the GitHub process, three hypotheses are introduced. The goal of these hypotheses is to bridge the gap between the more qualitative research of GitHub\cite{dabbish2012social,begel2013social} and the statistical analysis of data from a random sampling of GitHub projects.
 
-In addition, three supporting research questions are proposed. These questions will draw upon data from this work, but also reference interviews with GitHub staff to better represent how GitHub may be changing how OSS development is conducted.
+In addition, three supporting research questions are proposed. These questions will draw upon data from this work, but also reference interviews with GitHub staff to better represent how GitHub may be changing how OSS development is conducted. These qualitative observations, paired with the more qualitative data analysis, allows for a broad description of the way that GitHub is changing the Software Engineering landscape for OSS.
 
 \subsection{Hypotheses}
-The following hypotheses
+The following hypotheses are presented in an effort to better understand the GitHub development process by analyzing data from actual GitHub projects. Each hypothesis will be backed by previous research in an attempt to show concrete ways in which the GitHub process may be changing the OSS development process. Where possible, results from previous research on the Apache Server[mockus2000case] is compared, as this work closely aligns with Hypothesis 2 and 3.
 
 \noindent \textbf{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
 In Open Source Software, a feeling of community belonging can be intrinsically motivating to developers\cite{lakhani2003hackers}. This feeling of belonging can be expressed passively, as a \emph{watch}, or actively, as a \emph{fork} of a repository. As \emph{watches} don't necessarily signal intent to contribute, a positive direction for an OSS project is to not only increase the number of \emph{watchers}, but also the number of \emph{forks}. As both signify a general general interest in the project, it is expected that there be some correlation between the two.
@@ -64,6 +66,7 @@ Research into the Apache Server project observed that there were far more \emph{
 Because issue reporting is of low risk to the code base, but has potentially high value, it is a perfect way for large numbers of people to contribute. It is expected that the findings of the Apache Server project research will hold true for GitHub projects as well.
 
 \subsection{Research Questions}
+To expand the analysis scope slightly, three qualitative research questions are posed. These, although backed by analyzed data where possible, are intended to show broader patterns, ideas, and motivations around the use of GitHub. Where possible, interviews\cite{begel2013social} where conducted to explore high level concepts and motivations.
 
 \noindent \textbf{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
 A smal core of developers, however, seems to be a historical fact of OSS development\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?
@@ -258,7 +261,7 @@ Only in a society where technical supremacy is highly appreciated can developers
 To further analyze this research question, and to explore further the GitHub ``society'' and its impact on OSS development, an interview with GitHub staff was conducted.\\\\
 \textit{Interview Q1: How is GitHub changing the way OSS is being developed?}\\
 
-\textit{Interview Q2: Many new Software Developers are will be starting their education/training already having experience with GitHub. How will Software Engineering as a discipline (and how it is taught) change to accodate the ideas popularized by GitHub?}\\
+\textit{Interview Q2: Many new Software Developers are will be starting their education/training already having experience with GitHub. How will Software Engineering as a discipline (and how it is taught) change to accommodate the ideas popularized by GitHub?}\\
 
 \textit{Interview Q3: There are many non-code artifacts being hosted on GitHub, for example, Object Management Group Specifications, Laws and Statutes, books... etc. Do you see GitHub participation expanding in the non-code areas?}\\
 

@@ -8,12 +8,16 @@ import random
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData, Column, Table, ForeignKey
 from sqlalchemy import Integer, String, DateTime
+from sqlalchemy import func
+from sqlalchemy.orm import sessionmaker
 
 from config import *
  
 engine = create_engine('mysql://'+db_username+'@'+db_host+':'+str(db_port)+'/'+db_database, echo=False)
  
 metadata = MetaData(bind=engine)
+Session = sessionmaker(bind=engine)
+db_session = Session()
  
 repository_table = Table('repository', metadata,
                     Column('id', Integer, primary_key=True),
@@ -42,7 +46,6 @@ commit_table = Table('commit', metadata,
                     mysql_engine='InnoDB'
                     )
  
- 
 # create tables in database
 metadata.create_all()
 
@@ -52,8 +55,14 @@ session.auth = (github_username, github_password)
 response = urllib2.urlopen('https://raw.github.com/gist/4669395')
 random_words = response.readlines()
 
+def _get_user_organizations(user):
+	response = session.get('https://api.github.com/users/'+user+"/orgs")
+	_check_quota(response)
+	if(response.ok):
+		orgs = json.loads(response.text or response.content)
+		return [org['login'] for org in orgs]
+
 def _get_random_repo():
-	repo_json = None
 	while True:
 		keyword = random.choice(random_words)
 		response = session.get('https://api.github.com/legacy/repos/search/'+keyword)
@@ -62,19 +71,24 @@ def _get_random_repo():
 			repos = json.loads(response.text or response.content)
 			if(len(repos['repositories']) > 0):
 				repo = random.choice(repos['repositories'])
-				response = session.get('https://api.github.com/repos/'+repo['username']+'/'+repo['name'])
-				if(response.ok):
-					return json.loads(response.text or response.content)
+				userame = repo['username']
+				orgs = _get_user_organizations(userame)
+				for org in orgs:
+					response = session.get('https://api.github.com/users/'+org+'/repos')
+					_check_quota(response)
+					if(response.ok):
+						repos = json.loads(response.text or response.content)
+						return random.choice(repos)
 
 def _check_quota(response):
 	requests_left = int(response.headers['X-RateLimit-Remaining'])
 	if(requests_left == 0):
 		print "Sleeping for 65 minutes... Good Night."
 		time.sleep(65 * 60)
-	print requests_left
+	if requests_left % 10 == 0: print "Requests Left: " + str(requests_left)
 
 def crawl(sample_size):
-	while(sample_size > 0):
+	while(sample_size > db_session.query(repository_table).count()):
 		try:
 			repo = _get_random_repo();
 			i = repository_table.insert([repo])
@@ -134,5 +148,4 @@ def crawl(sample_size):
 		except Exception as e:
 			print e
 
-
-crawl(999)
+crawl(100)
