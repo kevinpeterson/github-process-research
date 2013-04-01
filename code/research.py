@@ -32,7 +32,6 @@ issue_table = Table('issue', metadata,
 					Column('id', Integer, autoincrement=True, primary_key=True),
                     Column('repository_id', Integer, ForeignKey('repository.id')),
                     Column('creator', String(60)),
-                    Column('name', String(60)),
                     Column('number', Integer),
                     Column('open_date', DateTime),
                     Column('close_date', DateTime),
@@ -148,4 +147,4 @@ def crawl(sample_size):
 		except Exception as e:
 			print e
 
-crawl(100)
+crawl(300)
