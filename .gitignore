@@ -5,3 +5,4 @@ config.py
 *.synctex.gz
 *.aux
 *.pdf
+interview.tex

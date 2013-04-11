@@ -147,4 +147,4 @@ def crawl(sample_size):
 		except Exception as e:
 			print e
 
-crawl(300)
+crawl(5000)

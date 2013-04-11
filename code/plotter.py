@@ -65,14 +65,12 @@ class ScatterPlot:
 
 		fig = plt.figure() 
 		m,b = numpy.polyfit(x,y,1)
-		print("Slope: %s, B: %s") % (m,b)
-
-		plt.plot(x,y,'bo',x,m*numpy.array(x)+b,'-k',linewidth=2)
 
 		plt.scatter(x,y)
 
-		correlation_coefficient = numpy.corrcoef(x,y)[0,1]
-		title('Correlation Coefficient: ' + str(correlation_coefficient))
+		correlation_coefficient = "%.4f" % numpy.corrcoef(x,y)[0,1]
+		title('Correlation Coefficient: ' + correlation_coefficient)
+		plt.plot(x,y,'bo',x,m*numpy.array(x)+b,'-k',linewidth=2)
 
 		plt.xlabel(self.xlabel)
 		plt.ylabel(self.ylabel)
