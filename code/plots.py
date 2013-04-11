@@ -1,7 +1,7 @@
 from plotter import Histograph, ScatterPlot, PieChart
 
 committers_query = '''select count(distinct committer) from commit c group by repository_id'''
-committers_histogram = Histograph(committers_query, "Committers", "Repositories", (1,25))
+committers_histogram = Histograph(committers_query, "Committers", "Repositories", (1,20))
 committers_histogram.plot("committers_histogram")
 
 committers_percentage_query = '''
@@ -34,7 +34,7 @@ issue_close_time_histogram.plot("issue_close_time_histogram")
 
 watcher_forks_scatterplot_query = '''select watchers, forks from repository'''
 watcher_forks_scatterplot = ScatterPlot(watcher_forks_scatterplot_query, "Watchers", "Forks", (0,1000), (0,150))
-print watcher_forks_scatterplot.plot("watcher_forks_scatterplot")
+watcher_forks_scatterplot.plot("watcher_forks_scatterplot")
 
 issue_reporters_committers_query = '''
 select 
@@ -53,7 +53,7 @@ from
     group by repository_id) issues ON issues.repository_id = commits.repository_id
 '''
 issue_reporters_committers_scatterplot = ScatterPlot(issue_reporters_committers_query, "Committers", "Issue Reoprters", (0,140), (0,140))
-print issue_reporters_committers_scatterplot.plot("issue_reporters_committers_scatterplot")
+issue_reporters_committers_scatterplot.plot("issue_reporters_committers_scatterplot")
 
 issue_close_time_forks_query = '''
 select 
@@ -72,7 +72,7 @@ from
 group by repository_id
 '''
 issue_close_time_forks_scatterplot = ScatterPlot(issue_close_time_forks_query, "Close Time", "Forks", (0,200), (0,200))
-print issue_close_time_forks_scatterplot.plot("issue_close_time_forks_scatterplot")
+issue_close_time_forks_scatterplot.plot("issue_close_time_forks_scatterplot")
 
 committers_percentage_pie_chart = PieChart(committers_percentage_query)
 committers_percentage_pie_chart.plot("committers_percentage_pie_chart")

@@ -34,7 +34,10 @@ class PieChart:
 				ranges['95-100'] += 1
 
 		fig = plt.figure()
-		plt.pie(ranges.values(), labels=[key + "%" for key in ranges.keys()], autopct='%.2f%%', shadow=True)
+
+		plt.pie(ranges.values(), labels=[key + "%" for key in ranges.keys()], autopct=None, shadow=True)
+
+		plt.legend(title="Contribution")
 
 		F = gcf()
 		F.savefig("../paper/images/"+filename+".png")
@@ -70,7 +73,9 @@ class ScatterPlot:
 
 		correlation_coefficient = "%.4f" % numpy.corrcoef(x,y)[0,1]
 		title('Correlation Coefficient: ' + correlation_coefficient)
-		plt.plot(x,y,'bo',x,m*numpy.array(x)+b,'-k',linewidth=2)
+
+		if float(correlation_coefficient) > 0.5:
+			plt.plot(x,y,'bo',x,m*numpy.array(x)+b,'-k',linewidth=2)
 
 		plt.xlabel(self.xlabel)
 		plt.ylabel(self.ylabel)
