@@ -31,7 +31,7 @@ Open Source Software (OSS) projects, or software projects with publicly availabl
 
 The development process by which these projects are produced is generally unstructured compared to commercial software, but many projects do exhibit general development patterns. GitHub, a popular OSS code hosting website, along with Git, the site's Source Code Management (SCM) tool of choice, may have the potential to fundamentally change this process by facilitating new patterns and opportunities for developers.
 
-By analyzing a subset of GitHub repositories, this report will show how GitHub has influenced some intrinsic aspects of traditional OSS development, such as developer hierarchies and issue close velocity. We find that many of the traditional aspects of OSS development remain, such as most project development is done by a small group of core developers. Other assumptions about project hierarchy, such as a large number of Issue Reporters compared to Committers, seems unsupported by the data.
+By analyzing a subset of GitHub repositories, this report will show how GitHub has influenced some intrinsic aspects of traditional OSS development, such as developer hierarchies and issue close velocity. We find that many of the traditional aspects of OSS development remain, such as most project development being done by a small group of core developers. Other traditional assumptions about OSS project hierarchy, such as a large number of Issue Reporters compared to Committers, seems unsupported by the GitHub data. We conclude that GitHub represents an evolution of the OSS development process, and not necessarily a large shift.
 \end{abstract}
 
 \noindent \\\textbf{Keywords.} Git, GitHub, Open Source
@@ -39,33 +39,33 @@ By analyzing a subset of GitHub repositories, this report will show how GitHub h
 \section{Introduction}
 Open Source Software (OSS) has fundamentally changed how we view the Software Development Process\cite{raymond1999cathedral}. OSS projects are not only viable, but successful and thriving. 
 
-A case study of the Apache Server project\cite{mockus2000case} shows that a dedicated community can produce software that rivals or exceeds commercial offerings. This study showed that even in the unstructured context of OSS, certain structures, hierarchies, and codes of conduct emerge. Contrast the Apache Server project to a successful project on GitHub. Although the spirit and intent may be the same, the tool set is drastically different. The intent of this work is to explore how GitHub facilitates this process, and also how it may be causing it to evolve.
+A case study of the Apache Server project\cite{mockus2000case} shows that a dedicated community can produce software that rivals or exceeds commercial offerings. Furthermore, it showed that even in the unstructured context of OSS, certain structures, hierarchies, and codes of conduct emerge. Contrast the Apache Server project to a successful project on GitHub. Although the spirit and intent may be the same, the tool set is drastically different. The intent of this work is to explore how GitHub facilitates this process, and also how it may be causing it to evolve.
 
-GitHub\footnote{https://github.com/} is a popular code hosting website that uses Git Source Code Management (SCM).\footnote{http://git-scm.com/} Along with hosting software repositories, GitHub incorporates social aspects of development. GitHub users have community-visible profiles, and user actions can be tracked and followed by other community actions. This type of social integration of a user's identity and actions is unique to GitHub\cite{dabbish2012social}. 
+GitHub\footnote{https://github.com/} is a popular code hosting website that uses Git Source Code Management (SCM).\footnote{http://git-scm.com/} Along with hosting software repositories, GitHub incorporates the social aspects of development. GitHub users have community-visible profiles, and user actions can be tracked and followed by other community actions. This type of social integration of a user's identity and actions is unique to GitHub\cite{dabbish2012social}. 
 
 Git itself, the SCM of GitHub, lends itself to the collaborative nature of GitHub by allowing for development to take place in a more distributed manner than previously available in other SCM systems\cite{spinellis2012git}.
 Git also allows for a variety of work flows\cite{chacon2009pro}. These work flows may be tailored to the individual needs of a project. The Linux Kernel, for example, uses a Dictator and Lieutenants Workflow\cite{platschekfloss}, which is hierarchical in nature. Other work flows may be more distributed, or resemble more traditional centralized SCM systems. Although work flow techniques aren't explicitly addressed in this work, it is important to note that work flow change may contribute to \textit{process change}.
 
 To better understand quantitatively the GitHub process, three hypotheses are introduced. The goal of these hypotheses is to bridge the gap between the more qualitative research of GitHub\cite{dabbish2012social,begel2013social} and the statistical analysis of data from a random sampling of GitHub projects.
 
-In addition, three supporting research questions are proposed. These questions will draw upon data from this work, but also reference several case studies to better represent how GitHub may be changing how OSS development is conducted. These qualitative observations, paired with the more qualitative data analysis, allows for a broad description of the way that GitHub is changing the Software Engineering landscape for OSS.
+In addition, three supporting research questions are proposed. These questions will draw upon data from this work, but also reference several case studies to better represent how GitHub may be changing the way in which OSS development is conducted. These qualitative observations, paired with the more qualitative data analysis, allows for a broad description of the way that GitHub is changing the Software Engineering landscape for OSS.
 
 \subsection{Hypotheses}
-The following hypotheses are presented in an effort to better understand the GitHub development process by analyzing data from actual GitHub projects. Each hypothesis will be backed by previous research in an attempt to show concrete ways in which the GitHub process may be changing the OSS development process. Where possible, results from previous research on the Apache Server[mockus2000case] is compared, as this work closely aligns with Hypothesis 2 and 3.\\
+The following hypotheses are presented in an effort to better understand the GitHub development process by analyzing data from actual GitHub projects. Each hypothesis will be backed by previous research in an attempt to show concrete ways in which GitHub may be changing the OSS development process. Where possible, results from previous research on the Apache Server\cite{mockus2000case} is compared, as this work closely aligns with Hypothesis 2 and 3.\\
 
 \noindent \textbf{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
 In Open Source Software, a feeling of community belonging can be intrinsically motivating to developers\cite{lakhani2003hackers}. This feeling of belonging can be expressed passively, as a \emph{watch}, or actively, as a \emph{fork} of a repository. 
 
 In GitHub, a \emph{watch} is a user act of subscribing to changes in a repository. It is also referred to as a \emph{star}. A \emph{watch} allows users to receive status updates, such as when code has been committed. This is considered a \emph{passive} act, as it signifies involvement in the community, but no direct action to contribute.
 
-A \emph{fork} is the creation of a personal copy of a repository\cite{dabbish2012social}, from which they can change without impacting the original code source. A \emph{fork} is an \emph{active} action, as it signifies both involvement and intent to contribute. It should be noted, however, that it only signifies \emph{intent} -- a fork of a repository could be made and no other actions taken.
+A \emph{fork} is the creation of a personal copy of a repository\cite{dabbish2012social}, from which changes may be made without impacting the original code source. A \emph{fork} is an \emph{active} action, as it signifies both involvement and intent to contribute. It should be noted, however, that it only signifies \emph{intent} -- a \emph{fork} of a repository could be made and no further actions taken.
 
-As \emph{watches} don't necessarily signal intent to contribute, a positive direction for an OSS project is to not only increase the number of \emph{watchers}, but also the number of \emph{forks}. As both signify a general general interest in the project, it is expected that there be some correlation between the two.\\
+As \emph{watches} don't necessarily signal intent to contribute, a positive direction for an OSS project is to not only increase the number of \emph{watchers}, but also the number of \emph{forks}. As both signify a general general interest in the project, it is expected that there will be some correlation between the two.\\
 
 \noindent \textbf{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
 In OSS, a project \emph{fork} has at times carried negative connotations, and has even been referred to as a hazzard\cite{kogut2001open}. In the context of Git and GitHub, however, a \emph{fork} is a positive occurrence for a project, as it signifies greater project involvement. As Git allows for easy merging of \emph{forks}, code contributions in the form of defect fixes can be incorporated quickly. Because of this, it is expected that \emph{Issue Resolution Time} will decrease as the number of \emph{forks} increases.
 
-The Apache Project noted that a rapid response to problems can be obtained because OSS is not bound to release schedules in the same way commercial software is. ``Patches'' may be released at any time, by any member of the community\cite{mockus2000case}. ``Patches'' in the context of GitHub could be equated to \emph{Pull Requests}. A \emph{Pull Requests} is an announcement by a \emph{fork} that there are changes that may be appropriate to add back to the main repository. The owners of the main repository may then audit these requests, and \emph{pull} some or all of them back into the main repository.
+The Apache Project noted that a rapid response to problems can be obtained because OSS is not bound to release schedules in the same way commercial software is. ``Patches'' may be released at any time, by any member of the community\cite{mockus2000case}. ``Patches'' in the context of GitHub could be equated to \emph{Pull Requests}. A \emph{Pull Request} is an announcement by a \emph{fork} that there have been changes made that may be appropriate to add back to the main repository. The owners of the main repository may then audit these requests, and \emph{pull} some or all of them back into the main repository.
 
 This hypothesis is, ultimately, an examination of ``Linus Law"\cite{raymond1999cathedral} in the context of GitHub. In other words, the more exposure the code gets (in terms of forks), the easier bugs will be to find and fix.\\
 
@@ -78,17 +78,17 @@ Because issue reporting is of low risk to the code base, but has potentially hig
 To expand the analysis scope slightly, three qualitative research questions are posed. These, although backed by analyzed data where possible, are intended to show broader patterns, ideas, and motivations around the use of GitHub. Where possible, interviews\cite{begel2013social} were conducted to explore high level concepts and motivations.\\
 
 \noindent \textbf{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
-A small core of developers, however, seems to be a historical fact of OSS development\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?\\
+A small core of developers contributing to a project seems to be a well entrenched pattern of OSS development\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers\cite{krishnamurthy2002cave}. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?\\
 
 \noindent \textbf{Research Question 2: How is GitHub changing the OSS process?}\\
-The social aspects of GitHub are an important part of the experience\cite{dabbish2012social}. User interactions and social pressures can drive OSS development in interesting ways. Social aspects of OSS development have existed before GitHub, with mailing lists\cite{mockus2000case}, gift giving mechanisms\cite{bergquist2008power}, and other code hosting sites. What is GitHub doing to facilitate change on OSS development, and how does it see OSS development changing moving forward?\\
+The social aspects of GitHub are an important part of the development experience\cite{dabbish2012social}. User interactions and social pressures can drive OSS development in interesting ways. Social aspects of OSS development have existed before GitHub, with mailing lists\cite{mockus2000case}, gift giving mechanisms\cite{bergquist2008power}, and other code hosting sites. What is GitHub doing to facilitate change on OSS development, and how does it see OSS development changing moving forward?\\
 
 \noindent \textbf{Research Question 3: Can GitHub be used for more that code artifacts?}\\
-The Object Management Group\textsuperscript{\textregistered}\footnote{http://www.omg.org} computer industry consortium focused on technology standards. Potential standard submission teams must go through a vetting process\cite{kobryn1999uml} which allows industry representatives to provide feedback on the standard. Gathering and recording this feedback is a challenge, but GitHub's issue tracking system may be able to streamline the process. This just one example of how GitHub is being used for non-code artifacts. Are organizations exploring this type of work flow?
+The Object Management Group\textsuperscript{\textregistered}\footnote{http://www.omg.org} is a computer industry consortium focused on technology standards. Potential standard submission teams must go through a vetting process\cite{kobryn1999uml} which allows industry representatives to provide feedback on the standard. Gathering and recording this feedback is a challenge, but GitHub's issue tracking system may be able to streamline the process. This just one example of how GitHub is being used for non-code artifacts. Are organizations exploring this type of work flow?
 
 \section{Methods}
 \subsection{Collection and Storage}
-Data collection was done using the GitHub REST API.\footnote{http://developer.github.com/v3/} A random selection of 1000 repositories was selected using Algorithm \ref{algo:data_collection_algo}.
+Data collection was done using the GitHub REST API.\footnote{http://developer.github.com/v3/} A random selection of 1000 repositories was selected, and metrics were gathered. The selection process used for choosing the repository sample is described in Algorithm \ref{algo:data_collection_algo}.
 
 \begin{algorithm}[H]
 \captionof{algorithm}{Data Collection Algorithm}\label{algo:data_collection_algo}
@@ -106,8 +106,7 @@ Data collection was done using the GitHub REST API.\footnote{http://developer.gi
 \end{algorithmic}
 \end{algorithm}
 
-Repositories were gathered at random, but only repositories owned by an \textit{Organization} GitHub User type were considered. The \textsc{isOrgRepo} function will filter out all non \textit{Organization} owned repositories.
-The \textsc{store} function accepts as an input a given random repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is described in Figure \ref{fig:er_diagram}.
+Repositories were gathered at random, but only repositories owned by an \textit{Organization} GitHub User type were considered. After a random repository has been selected, the \textsc{isOrgRepo} function will filter out all non \textit{Organization} owned repositories. Next, the \textsc{store} function accepts as an input the given repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is described in Figure \ref{fig:er_diagram}.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/er.png}
@@ -122,13 +121,13 @@ Matplotlib\cite{Hunter2007}, a 2D graphics package for Python, was used to rende
 All source code and materials used in data collection and analysis are hosted at GitHub (naturally!), and may be accessed by the following URL: \url{https://github.com/kevinpeterson/github-process-research}.
 
 \subsection{Analysis}
-As stated, the main focus of data collection was to gather metrics pertaining to GitHub \textit{Repositories}. In this context, a \textit{Repository} is defined as a Set of \textit{Attributes}. An \textit{Attribute} is a metric of interest. See Section \ref{sec:attributes} for further information on individual \textit{Attributes}. For analysis purposes, these metrics of interest are used as an Indexing Set $A^\prime$, and have labels as follows:
+As stated, the main focus of data collection was to gather metrics pertaining to GitHub \textit{Repositories}. In this context, a \textit{Repository} is defined as a set of \textit{Attributes}. An \textit{Attribute} is a metric of interest. See Section \ref{sec:attributes} for further information on individual \textit{Attributes}. For analysis purposes, these metrics of interest are used as an Indexing Set $A^\prime$, and have labels as follows:
 
 \[A^\prime = \{i, c, i^\prime, i^{\prime\prime}, \Delta, \alpha, \beta\}\]
 
 Where $i$ = {\textit{Issues}, $c$ = {\textit{Commits}, $i^\prime$ = {\textit{Closed Issues}, $i^{\prime\prime}$ = {\textit{Open Issues}, $\Delta$ = {\textit{Issue Close Time}, $\alpha$ = {\textit{Issue Creators}, and $\beta$ = {\textit{Committers}.
 
-All analyzed \textit{Respositories} can be thought of as the Indexed Family of \textit{Attribute} Sets $A$, or a set of sets of \textit{Attributes}. Let the set of these sets of \textit{Attributes} be called $S$, or the \textit{Repository Sample}. We can label the \textit{Attribute} sets by arbitrary integers 0 through $|S|$, or:
+All analyzed \textit{Respositories} can be thought of as the Indexed Family of \textit{Attribute} Sets, or a set of sets of \textit{Attributes}. Let the set of these sets of \textit{Attributes} be called $S$, or the \textit{Repository Sample}. We can label the \textit{Attribute} sets by arbitrary integers 0 through $|S|$, or:
 \[ \{A_i\}_{i \in \{0,1,2 ... |S|\} }\]
 
 In this way, we can reference a set of \textit{Attributes} (or, an individual \textit{Repository}), by $A_i$. 
@@ -137,7 +136,7 @@ Going further, we can also denote an individual \textit{Attribute} of a given \t
 \[ \{A_{(i,r)}\}_{(i,r) \in A^\prime \times \{0,1,2 ... |S|\} } \]
 or, $A_{i,r}$. For example, $A_{\Delta,10}$ would denote the value of the \textit{Issue Close Time} ($\Delta$) of Repository \textit{10}.
 
-Each individual Attribute processed by some aggregate function $f$, or $f(  A_{i,r} )$. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}. This analysis is applied to all $n$ repositories for which data was collected. Results were then averaged over all repositories. Each attribute is analyzed independently, so given:
+To gather the metics, each individual Attribute processed by some aggregate function $f$, or $f(  A_{i,r} )$. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}. This analysis is applied to all $n$ repositories for which data was collected. Results were then averaged over all repositories. Each attribute is analyzed independently, so given:
 \[ g(j) = \frac{\sum\limits_{r = 0}^{|S|} f(  A_{r,j}  ) }{|S|} \]
 each individual attribute is processed via $g(j)$ and will result in the average of the given aggregate function.
 
@@ -145,7 +144,7 @@ each individual attribute is processed via $g(j)$ and will result in the average
 \label{sec:attributes}
 The individual \textit{Attribute} names, or the elements of $A^\prime$, are described below. For detailed summary statistics of these \textit{Attributes}, see Figure \ref{table:summary_stats}.\\\\
 \noindent \textbf{\textit{Issues:}}
-The number of issues posted to a repository's issue tracker\footnote{https://github.com/blog/411-github-issue-tracker}.
+The number of issues posted to a repository's issue tracker.\footnote{https://github.com/blog/411-github-issue-tracker}
 
 \noindent \textbf{\textit{Commits:}}
 The number of individual source code commits to a repository. It is important to note that a \textit{commit} is a single transaction that changes the code contents of a repository. Actual commit ``size'' (lines of code modified, for example) is not taken into account.
@@ -159,9 +158,9 @@ The number of issues in a repository in a state of \textsc{open} at the time of 
 \noindent \textbf{\textit{Issue Close Time:}}
 The average time taken to close a given issue in a repository. Non-\textsc{closed} issues were not counted.\\
 
-The average is calculated using the following method. Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds. Let $I$ equal the Set of \textit{Issues} in a given repository, with elements comprised of tuples $(\tau, \tau^\prime)$, where $\tau$ is \textit{Issue Open Time} and $\tau^\prime$ is \textit{Issue Close Time}. We calculate \textit{Issue Close Time} by: 
+The average is calculated using the following method. Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds. Let $I$ equal the Set of \textit{Issues} in a given repository, with elements comprised of tuples $(\tau, \tau^\prime)$, where $\tau$ is \textit{Issue Open Date} and $\tau^\prime$ is \textit{Issue Close Date}. We calculate \textit{Issue Close Time} by: 
 
-\[ \Delta = d\left( \frac{\sum_{i \in I} s( p_{(1)}i ) - s( p_{(2)}i )  } {n} \right) \]
+\[ \Delta = d\left( \frac{\sum_{i \in I} s( p_{(2)}i ) - s( p_{(1)}i )  } {n} \right) \]
 
 Where for each issue $i$ in $I$, the \textit{Issue Open Date} $s( p_{(1)}i)$ is subtracted from the \textit{Issue Close Date} $s( p_{(2)}i)$, and $p_{(1)}i$ and $p_{(2)}i$ denote the elements of the tuple, or \textit{Issue Open Date} and \textit{Issue Close Date}, respectively. The result of this is averaged and converted into a Date via $d(x)$, resulting in the average issue close time interval $\Delta$.
 
@@ -210,7 +209,7 @@ A correlation coefficient of \input{watcher_forks_scatterplot-correlation}}\unsk
 The data reinforces the hypothesis, as does other research in the area. Even though there are arguments that the number of Forks is the true measure of project success\cite{baudry2012towards}, the data suggests that the two measures are related. Also, \textit{Dabbish et al.} have noted that the number of Watches can be a key for others to gauge interest in a project, and thus determine if they should participate \cite{dabbish2013leveraging}. If the number of Watchers of a repository serves as a social cue for participation, even ``passive'' involvement with a project (Watching) could influence the ``active'' participation (Forking). This could possibly contribute to the correlation of the two variables.\\
 
 \noindent \textbf{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
-No significant correlation was found between the number of repository forks and issue resolution time. It is important to note, however, that issue resolution time is not necessarily related to software product quality in the context of GitHub. We can assert that for several reasons. \textit{First}, GitHub issues are not necessarily product defects. Issues may be feature requests, comments, or general support questions. \textit{Second}, GitHub projects may have primary issue tracking services elsewhere, while using the GitHub issues as secondary services or not at all. \textit{Third}, Pham \textit{et al.} explore an emerging ``testing culture'' in GitHub -- something which could have sizable impacts on software quality but wouldn't necessarily be reflected in this metric\cite{phamcreating}.
+No significant correlation was found between the number of repository forks and issue resolution time. It is important to note, however, that issue resolution time is not necessarily related to software product quality in the context of GitHub. We can assert that for several reasons. \textit{First}, GitHub issues are not necessarily product defects. Issues may be feature requests, comments, or general support questions. \textit{Second}, GitHub projects may have primary issue tracking services elsewhere, while using the GitHub issues as secondary services or not at all. \textit{Third}, Pham \textit{et al.} explore an emerging ``testing culture'' in GitHub. This, among other things, suggests that GitHub may be facilitating testing by making it more \emph{triable} by lowering entry barriers, and makng the process as a whole more \emph{observable}. This aspect is something which could have sizable impacts on software quality but wouldn't necessarily be reflected in this metric\cite{phamcreating}.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_close_time_forks_scatterplot.png}
@@ -222,7 +221,7 @@ It is possible that other factors, such as issue prioritization, may have a grea
 
 \noindent \textbf{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude.}\\
 Data does not support an exponentially increasing number of distinct Issue Reporters as compared to distinct Committers. 
-As shown in Figure\ref{fig:issue_reporters_committers_scatterplot}, the slope of the relationship between the two variables is less than one. This does not seem to completely align with findings in the Apache Server project\cite{mockus2000case}. 
+As shown in Figure \ref{fig:issue_reporters_committers_scatterplot}, the slope of the relationship between the two variables is less than one. This does not seem to completely align with findings in the Apache Server project\cite{mockus2000case}. 
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_reporters_committers_scatterplot.png}
@@ -230,7 +229,7 @@ As shown in Figure\ref{fig:issue_reporters_committers_scatterplot}, the slope of
 \label{fig:issue_reporters_committers_scatterplot}
 \end{figure}
 
-Figure\ref{fig:issue_reporters_committers_scatterplot}, does however suggest, however, that that the two variables may be related. The hypothesis implies that there will be a correlation between the two variables -- which is demonstrated by a reasonably strong correlation coefficient of \input{issue_reporters_committers_scatterplot-correlation}}\unskip. More investigation would be necessary to further examine this finding.\\
+Figure \ref{fig:issue_reporters_committers_scatterplot}, does however suggest, however, that that the two variables may be related. The hypothesis implies that there will be a correlation between the two variables -- which is demonstrated by a reasonably strong correlation coefficient of \input{issue_reporters_committers_scatterplot-correlation}}\unskip. More investigation would be necessary to further examine this finding.\\
 
 \subsection{Research Questions}
 \noindent \textbf{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
@@ -244,7 +243,7 @@ P = \left\{ \frac{ C_u } { |\mathscr{C}| } \times 100 \Big| u \in U \right\}
 Where $U$ is the Set of \textit{Committers} to a given \textit{Repository}, $\mathscr{C}$ is the set of all \textit{Commits} to a \textit{Repository}, and $C_u$ denotes sets of \textit{Commits} by an individual \textit{Committers} to a \textit{Repository}, or:
  \[ \{ C_u \}_{u \in U} \]
 
-Each \textit{Committers}, then, will produce a subset of all \textit{Commits} to a a \textit{Repository}, or $C_u \subset \mathscr{C}$. 
+Each \textit{Committer}, then, will produce a subset of all \textit{Commits} to a a \textit{Repository}, or $C_u \subset \mathscr{C}$. 
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/committers_percentage_pie_chart.png}
@@ -252,9 +251,9 @@ Each \textit{Committers}, then, will produce a subset of all \textit{Commits} to
 \label{fig:committers_percentage_pie_chart}
 \end{figure}
 
-To find the percentages Set $P$ of Equation\ref{eq:commit_percentage}, the commits by each user $C_u$ are divided by the total number of commits $|\mathscr{C}|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignments is plotted on Figure \ref{fig:committers_percentage_pie_chart}.
+To find the percentages, or set $P$ of Equation \ref{eq:commit_percentage}, the commits by each user $C_u$ are divided by the total number of commits $|\mathscr{C}|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignments is plotted on Figure \ref{fig:committers_percentage_pie_chart}.
 
-Most notably, the data shows that a large percentage of developers committed small amounts ($0-5\%$ of the total repository commit). This means that a small core are not entirely monopolizing the commits, but rather opportunity exists for users to contribute, even if in small ways. Instances of developer monopolization of commits to a repository (for example, where a developer contributes $95-100\%$ of the total commits), are shown to be small.
+Most notably, the data shows that a large percentage of developers committed small amounts ($0-5\%$) of the total number of repository commits. This means that a small core are not entirely monopolizing the commits, but rather opportunity exists for users to contribute, even if in small ways. Instances of developer monopolization of commits to a repository (for example, where a developer contributes $95-100\%$ of the total commits), are shown to be small.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/committers_histogram.png}
@@ -274,14 +273,14 @@ Only in a society where technical supremacy is highly appreciated can developers
 
 With this process change can also come cause for concern. The move to Git from a centralized version control system (such as SVN or CVS) is not without its challenges. Differences in philosophy and nomenclature may place added strain on developers\cite{bird2009promises}. Also, it is not to be assumed that process change is always welcome\cite{de2009software}, even if it is an improvement. Developers and organizations have existing processes, SCM tools, and workflow patterns -- which all change at a cost.
 
-Despite the potential migration cost, the National Center for Biomedical Ontology,\footnote{https://github.com/ncbo}, the National Cancer Informatics Program\footnote{https://github.com/ncip}, NASA\footnote{https://github.com/nasa}, and the WhiteHouse\footnote{https://github.com/WhiteHouse} are just some organizations that have moved all or portions of development to GitHub. As these and other organizations consider the move to GitHub, the distributed and ``social'' aspects of the OSS process will move continue to evolve.\\
+Despite the potential migration cost, the National Center for Biomedical Ontology,\footnote{https://github.com/ncbo} the National Cancer Informatics Program,\footnote{https://github.com/ncip} NASA,\footnote{https://github.com/nasa} and the WhiteHouse\footnote{https://github.com/WhiteHouse} are just some organizations that have moved all or portions of development to GitHub. As these and other organizations consider the move to GitHub, the distributed and ``social'' aspects of the OSS process will continue to evolve.\\
 
 \noindent \textbf{Research Question 3: Can GitHub be used for more that code artifacts?}\\
-The OMG\textsuperscript{\textregistered} standardization process is a process by which products strive to produce an interoperability standard by way of an industry standards consortium.\cite{omgTechProcess}
+The OMG\textsuperscript{\textregistered} standardization process is a process by which products strive to produce an interoperability standard by way of an industry standards consortium\cite{omgTechProcess}.
 The standardization process itself aims to, at its conclusion, produce a set of model artifacts containing sufficient detail such that when interpreted and implemented, produce interoperable software.
 At a conceptual level, this can be thought of as a software requirements engineering process as much as a standardization process. If so, of the five main tasks of requirements engineering, Elicitation, Analysis and Negotiation, Documentation, Validation, and Management,\cite{sommerville1998requirements} we can show that GitHub is an appropriate forum for many of them.
 
-As a case study, the CTS2 OMG\textsuperscript{\textregistered} Specification\cite{cts2} used a GitHub issue tracker\footnote{https://github.com/cts2/cts2-specification/issues} to track specification changes. Elicitation, Analysis and Negotiation were natural fits for the issue tracker. This was chosen in part because the barrier to participation was very small (only a GitHub account was needed), and issues tracker itself allowed for dialogs in the form of comments. Because customer involvement is critical to these activities\cite{paetsch2003requirements}, ease of contribution was a main concern. OMG\textsuperscript{\textregistered} has a predescribed format for requirements Documentation, but using the GitHub issue API\footnote{http://developer.github.com/v3/issues/}, much of this documentation can be automated.
+As a case study, the CTS2 OMG\textsuperscript{\textregistered} Specification\cite{cts2} used a GitHub issue tracker\footnote{https://github.com/cts2/cts2-specification/issues} to track specification changes. Elicitation, Analysis and Negotiation were natural fits for the issue tracker. This was chosen in part because the barrier to participation was very small (only a GitHub account was needed), and issue tracker itself allowed for dialogs in the form of comments. Because customer involvement is critical to these activities\cite{paetsch2003requirements}, ease of contribution was a main concern. OMG\textsuperscript{\textregistered} has a predescribed format for requirements Documentation, but using the GitHub issue API\footnote{http://developer.github.com/v3/issues/}, much of this documentation can be automated.
 Validation and Management are areas of requirements engineering that GitHub has interesting solutions for. First, in order to track (or validate) changes to the specification, when the actual specification is modified, the commit that modified it can be traced to a named issue by simply putting the issue number in the commit log. This level of traceability is powerful, as it allows every change to the specification artifacts to be tracked consistently to an open issue. As the normal OMG\textsuperscript{\textregistered} process proceeds, requirements can be managed through ``tagging'' the issues. By allowing issues to be grouped by arbitrary tags, users are more free to adapt their own work flow. For instance, when community voting on issues needed to be done for CTS2, a simple ``ready for vote'' tag signified to the voting board exactly what was under consideration
 
 As mentioned, the CTS2 specification made heavy use of the GitHub issue tracker, as well as another OMG\textsuperscript{\textregistered} specification, ServD.\footnote{https://github.com/servd/servd-specification} For open source specifications, or requirements engineering activities, GitHub has shown to be a viable platform. 
@@ -294,7 +293,7 @@ The data summary variance statement in Assertion: \ref{eq:variance} is important
 The non-code artifacts in GitHub may fall outside of the domain of software development, but it is a significant aspect of our findings. From government documents to software specifications, GitHub is being used and used successfully. More research is needed into what role GitHub will play in the work flow of these artifacts, and whether it will influence their traditional work flow, as it has for software development.
 
 \section{Acknowledgments}
-We thank Gilberto Fragoso, Ph.D. and Paul Alexander for insight and ideas, Harold Solbrig, Craig Stancl, and Dick Hedger for guidance, and Rick Kiefer for his review.
+We thank Gilberto Fragoso, Ph.D., Paul Alexander, and the GitHub Staff for insight and ideas, Harold Solbrig, Craig Stancl, and Dick Hedger for guidance, and Rick Kiefer for his review.
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
