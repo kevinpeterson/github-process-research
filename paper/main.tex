@@ -78,7 +78,7 @@ Because issue reporting is of low risk to the code base, but has potentially hig
 To expand the analysis scope slightly, three qualitative research questions are posed. These, although backed by analyzed data where possible, are intended to show broader patterns, ideas, and motivations around the use of GitHub. Where possible, interviews\cite{begel2013social} were conducted to explore high level concepts and motivations.\\
 
 \noindent \textbf{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
-A small core of developers contributing to a project seems to be a well entrenched pattern of OSS development\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers\cite{krishnamurthy2002cave}. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changes this?\\
+A small core of developers contributing to a project seems to be a well entrenched pattern of OSS development\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers\cite{krishnamurthy2002cave}. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changed this?\\
 
 \noindent \textbf{Research Question 2: How is GitHub changing the OSS process?}\\
 The social aspects of GitHub are an important part of the development experience\cite{dabbish2012social}. User interactions and social pressures can drive OSS development in interesting ways. Social aspects of OSS development have existed before GitHub, with mailing lists\cite{mockus2000case}, gift giving mechanisms\cite{bergquist2008power}, and other code hosting sites. What is GitHub doing to facilitate change on OSS development, and how does it see OSS development changing moving forward?\\
@@ -123,9 +123,9 @@ All source code and materials used in data collection and analysis are hosted at
 \subsection{Analysis}
 As stated, the main focus of data collection was to gather metrics pertaining to GitHub \textit{Repositories}. In this context, a \textit{Repository} is defined as a set of \textit{Attributes}. An \textit{Attribute} is a metric of interest. See Section \ref{sec:attributes} for further information on individual \textit{Attributes}. For analysis purposes, these metrics of interest are used as an Indexing Set $A^\prime$, and have labels as follows:
 
-\[A^\prime = \{i, c, i^\prime, i^{\prime\prime}, \Delta, \alpha, \beta\}\]
+\[A^\prime = \{i, c, i^\prime, i^{\prime\prime}, \Delta, \omega, \epsilon\}\]
 
-Where $i$ = {\textit{Issues}, $c$ = {\textit{Commits}, $i^\prime$ = {\textit{Closed Issues}, $i^{\prime\prime}$ = {\textit{Open Issues}, $\Delta$ = {\textit{Issue Close Time}, $\alpha$ = {\textit{Issue Creators}, and $\beta$ = {\textit{Committers}.
+Where $i$ = {\textit{Issues}, $c$ = {\textit{Commits}, $i^\prime$ = {\textit{Closed Issues}, $i^{\prime\prime}$ = {\textit{Open Issues}, $\Delta$ = {\textit{Issue Close Time}, $\omega$ = {\textit{Issue Creators}, and $\epsilon$ = {\textit{Committers}.
 
 All analyzed \textit{Respositories} can be thought of as the Indexed Family of \textit{Attribute} Sets, or a set of sets of \textit{Attributes}. Let the set of these sets of \textit{Attributes} be called $S$, or the \textit{Repository Sample}. We can label the \textit{Attribute} sets by arbitrary integers 0 through $|S|$, or:
 \[ \{A_i\}_{i \in \{0,1,2 ... |S|\} }\]
@@ -133,12 +133,12 @@ All analyzed \textit{Respositories} can be thought of as the Indexed Family of \
 In this way, we can reference a set of \textit{Attributes} (or, an individual \textit{Repository}), by $A_i$. 
 
 Going further, we can also denote an individual \textit{Attribute} of a given \textit{Repository} by:
-\[ \{A_{(i,r)}\}_{(i,r) \in A^\prime \times \{0,1,2 ... |S|\} } \]
-or, $A_{i,r}$. For example, $A_{\Delta,10}$ would denote the value of the \textit{Issue Close Time} ($\Delta$) of Repository \textit{10}.
+\[ \{A_{(i,\alpha)}\}_{(i,\alpha) \in A^\prime \times \{0,1,2 ... |S|\} } \]
+or, $A_{i,\alpha}$. For example, $A_{10,\Delta}$ would denote the value of the \textit{Issue Close Time} ($\Delta$) of Repository \textit{10}.
 
-To gather the metics, each individual Attribute processed by some aggregate function $f$, or $f(  A_{i,r} )$. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}. This analysis is applied to all $n$ repositories for which data was collected. Results were then averaged over all repositories. Each attribute is analyzed independently, so given:
-\[ g(j) = \frac{\sum\limits_{r = 0}^{|S|} f(  A_{r,j}  ) }{|S|} \]
-each individual attribute is processed via $g(j)$ and will result in the average of the given aggregate function.
+To gather the metrics, the sets of all individual \textit{Attribute} across all \textit{Repositories} are processed by some aggregate function $f$. The input of this function is the union of all sets of a particular \textit{Attribute} over each \textit{Repository} in the sample. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}. This analysis is applied to all repositories in the sample $S$ for which data was collected. Each attribute is analyzed independently, so given:
+\[ g(\alpha) =f \left( \bigcup\limits_{r = 0}^{|S|}  A_{r,\alpha} \right) \]
+each individual attribute is processed via $g(\alpha)$ and will result in the output of the given aggregate function. The result of each aggregate function when applied to the entire sample set of \textit{Respositories} of Table \ref{table:summary_stats}.
 
 \subsubsection{Attributes}
 \label{sec:attributes}
@@ -160,9 +160,9 @@ The average time taken to close a given issue in a repository. Non-\textsc{close
 
 The average is calculated using the following method. Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds. Let $I$ equal the Set of \textit{Issues} in a given repository, with elements comprised of tuples $(\tau, \tau^\prime)$, where $\tau$ is \textit{Issue Open Date} and $\tau^\prime$ is \textit{Issue Close Date}. We calculate \textit{Issue Close Time} by: 
 
-\[ \Delta = d\left( \frac{\sum_{i \in I} s( p_{(2)}i ) - s( p_{(1)}i )  } {n} \right) \]
+\[ \Delta = d\left( \frac{\sum_{i \in I} s\left(p_{2}(i) \right) - s\left(p_{1}(i) \right)  } {|I|} \right) \]
 
-Where for each issue $i$ in $I$, the \textit{Issue Open Date} $s( p_{(1)}i)$ is subtracted from the \textit{Issue Close Date} $s( p_{(2)}i)$, and $p_{(1)}i$ and $p_{(2)}i$ denote the elements of the tuple, or \textit{Issue Open Date} and \textit{Issue Close Date}, respectively. The result of this is averaged and converted into a Date via $d(x)$, resulting in the average issue close time interval $\Delta$.
+Where for each issue $i$ in $I$, the \textit{Issue Open Date} $s( p_{1}(i))$ is subtracted from the \textit{Issue Close Date} $s( p_{2}(i))$, where $p_{1}(i)$ and $p_{2}(i)$ denote projections of the tuple, or \textit{Issue Open Date} and \textit{Issue Close Date}, respectively. The result of this is averaged and converted into a Date via $d(x)$, resulting in the average issue close time interval $\Delta$.
 
 \noindent \textbf{\textit{Issue Creators:}}
 The number of distinct users that have opened at least one \textit{Issue}.
@@ -298,6 +298,6 @@ We thank Gilberto Fragoso, Ph.D., Paul Alexander, and the GitHub Staff for insig
 \bibliographystyle{plain}
 \bibliography{bibliography}
 
-\input{interview}
+%\input{interview}
 
 \end{document}
