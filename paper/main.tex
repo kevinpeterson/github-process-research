@@ -86,7 +86,7 @@ The Object Management Group\textsuperscript{\textregistered}\footnote{http://www
 
 \section{Methods}
 \subsection{Collection and Storage}
-Data collection was done using the GitHub REST API.\footnote{http://developer.github.com/v3/} A random selection of 1000 repositories was selected, and metrics were gathered. Only repositories owned by a GitHub \textit{Organization} were considered. GitHub \textit{Organizations} are group-owned accounts\footnote{https://github.com/blog/674-introducing-organizations}, as opposed to normal individual user-owned accounts. \textit{Organization} owned repositories were chosen to increase the likelihood of analyzing high-participation projects. The selection process used for choosing the repository sample is described in Algorithm \ref{algo:data_collection_algo}.
+Data collection was done using the GitHub REST API.\footnote{http://developer.github.com/v3/} A random selection of 1000 repositories was selected, and metrics were gathered. Only repositories owned by a GitHub \textit{Organization} were considered. GitHub \textit{Organizations} are group-owned accounts,\footnote{https://github.com/blog/674-introducing-organizations} as opposed to normal individual user-owned accounts. \textit{Organization} owned repositories were chosen to increase the likelihood of analyzing high-participation projects. The selection process used for choosing the repository sample is described in Algorithm \ref{algo:data_collection_algo}.
 
 \begin{algorithm}[H]
 \captionof{algorithm}{Data Collection Algorithm}\label{algo:data_collection_algo}
@@ -136,7 +136,7 @@ or, $A_{i,\alpha}$. For example, $A_{10,\Delta}$ would denote the value of the \
 
 To gather the metrics, the sets of all individual \textit{Attribute} across all \textit{Repositories} are processed by some aggregate function $f$. The input of this function is the union of all sets of a particular \textit{Attribute} over each \textit{Repository} in the sample. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}. This analysis is applied to all repositories in the sample $S$ for which data was collected. Each attribute is analyzed independently, so given:
 \[ g(\alpha) =f \left( \bigcup\limits_{r = 0}^{|S|}  A_{r,\alpha} \right) \]
-each individual attribute is processed via $g(\alpha)$ and will result in the output of the given aggregate function. The result of each aggregate function when applied to the entire sample set of \textit{Respositories} of Table \ref{table:summary_stats}.
+each individual attribute is processed via $g(\alpha)$ and will result in the output of the given aggregate function. The result of each aggregate function when applied to the entire sample set of \textit{Repositories} of Table \ref{table:summary_stats}.
 
 \subsubsection{Attributes}
 \label{sec:attributes}
@@ -154,7 +154,7 @@ The number of issues in a repository in a state of \textsc{closed} at the time o
 The number of issues in a repository in a state of \textsc{open} at the time of processing.
 
 \noindent \textbf{\textit{Issue Close Time:}}
-The average time taken to close a given issue in a repository. Non-\textsc{closed} issues were not counted.\\
+The average time (in Days) taken to close a given issue in a repository. Non-\textsc{closed} issues were not counted.\\
 
 The average is calculated using the following method. Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds. Let $I$ equal the Set of \textit{Issues} in a given repository, with elements comprised of tuples $(\tau, \tau^\prime)$, where $\tau$ is \textit{Issue Open Date} and $\tau^\prime$ is \textit{Issue Close Date}. We calculate \textit{Issue Close Time} by: 
 
@@ -186,14 +186,14 @@ N = 1000 Repositories
 \end{center}
 \end{table}
 
-Table \ref{table:summary_stats} describes summary statistics of the repository variables above. The most evident feature of the result is the large variance. In fact, for the set of tested variables $A$, each variable $A_j$ is observed to have a larger standard deviation than the variable mean:
+Table \ref{table:summary_stats} describes summary statistics of the repository variables described in Section \ref{sec:attributes}. The most evident feature of the result is the large variance. In fact, for the set of tested variables $A$, each variable $A_j$ is observed to have a larger standard deviation than the variable mean:
 \begin{equation}
 \forall j \in A \colon \overline{j} < \sigma_{j}
 \label{eq:variance}
 \end{equation}
 All measured variables demonstrated this characteristic.
 
-The sample ($N = 1000$) GitHub repositories were analyzed, out of a total of 5.7 million~\cite{githubPress}.
+The sample ($N = 1000$) GitHub repositories were selected, at random, out of a total of 5.7 million~\cite{githubPress} public GitHub repositories.
 
 \subsection{Hypotheses}
 \noindent \textbf{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
@@ -211,7 +211,7 @@ No significant correlation was found between the number of repository forks and 
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_close_time_forks_scatterplot.png}
-\caption{Repostitory issue close time and number of forks}
+\caption{Repository issue close time and number of forks}
 \label{fig:issue_close_time_forks_scatterplot}
 \end{figure}
 
