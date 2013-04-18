@@ -35,7 +35,7 @@ class PieChart:
 
 		fig = plt.figure()
 
-		plt.pie(ranges.values(), labels=[key + "%" for key in ranges.keys()], autopct=None, shadow=True)
+		plt.pie(ranges.values(), labels=[key + "%" for key in sorted(ranges.keys(), key=lambda key: int(key.split('-')[0]))], autopct=None, shadow=True)
 
 		plt.legend(title="Contribution")
 
