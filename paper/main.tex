@@ -86,7 +86,7 @@ The Object Management Group\textsuperscript{\textregistered}\footnote{http://www
 
 \section{Methods}
 \subsection{Collection and Storage}
-Data collection was done using the GitHub REST API.\footnote{http://developer.github.com/v3/} A random selection of 1000 repositories was selected, and metrics were gathered. Only repositories owned by a GitHub \textit{Organization} were considered. GitHub \textit{Organizations} are group-owned accounts,\footnote{https://github.com/blog/674-introducing-organizations} as opposed to normal individual user-owned accounts. \textit{Organization} owned repositories were chosen to increase the likelihood of analyzing high-participation projects. The selection process used for choosing the repository sample is described in Algorithm \ref{algo:data_collection_algo}.
+Data collection was done using the GitHub REST API.\footnote{http://developer.github.com/v3/} A random selection of 1000 repositories was selected, and metrics were gathered. Only repositories owned by a GitHub \textit{Organization} were considered. GitHub \textit{Organizations} are group-owned accounts,\footnote{https://github.com/blog/674-introducing-organizations} as opposed to normal individual user-owned accounts. \textit{Organization} owned repositories were chosen to increase the likelihood of analyzing high-participation projects. The selection process used for choosing the repository sample is described in Algorithm~\ref{algo:data_collection_algo}.
 
 \begin{algorithm}[H]
 \captionof{algorithm}{Data Collection Algorithm}\label{algo:data_collection_algo}
@@ -104,7 +104,7 @@ Data collection was done using the GitHub REST API.\footnote{http://developer.gi
 \end{algorithmic}
 \end{algorithm}
 
-When a random repository has been selected, the \textsc{isOrgRepo} function will filter out all non \textit{Organization} owned repositories. Next, the \textsc{store} function accepts as an input the given repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is described in Figure \ref{fig:er_diagram}.
+When a random repository has been selected, the \textsc{isOrgRepo} function will filter out all non \textit{Organization} owned repositories. Next, the \textsc{store} function accepts as an input the given repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is described in Figure~\ref{fig:er_diagram}.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/er.png}
@@ -119,7 +119,7 @@ Matplotlib~\cite{Hunter2007}, a 2D graphics package for Python, was used to rend
 All source code and materials used in data collection and analysis are hosted at GitHub (naturally!), and may be accessed by the following URL: \url{https://github.com/kevinpeterson/github-process-research}.
 
 \subsection{Analysis}
-As stated, the main focus of data collection was to gather metrics pertaining to GitHub \textit{Repositories}. In this context, a \textit{Repository} is defined as a set of \textit{Attributes}. An \textit{Attribute} is a metric of interest. See Section \ref{sec:attributes} for further information on individual \textit{Attributes}. For analysis purposes, these metrics of interest are used as an Indexing Set $A^\prime$, and have labels as follows:
+As stated, the main focus of data collection was to gather metrics pertaining to GitHub \textit{Repositories}. In this context, a \textit{Repository} is defined as a set of \textit{Attributes}. An \textit{Attribute} is a metric of interest. See Section~\ref{sec:attributes} for further information on individual \textit{Attributes}. For analysis purposes, these metrics of interest are used as an Indexing Set $A^\prime$, and have labels as follows:
 
 \[A^\prime = \{i, c, i^\prime, i^{\prime\prime}, \Delta, \omega, \epsilon\}\]
 
@@ -134,13 +134,13 @@ Going further, we can also denote an individual \textit{Attribute} of a given \t
 \[ \{A_{(i,\alpha)}\}_{(i,\alpha) \in A^\prime \times \{0,1,2 ... |S|\} } \]
 or, $A_{i,\alpha}$. For example, $A_{10,\Delta}$ would denote the value of the \textit{Issue Close Time} ($\Delta$) of Repository \textit{10}.
 
-To gather the metrics, the sets of all individual \textit{Attribute} across all \textit{Repositories} are processed by some aggregate function $f$. The input of this function is the union of all sets of a particular \textit{Attribute} over each \textit{Repository} in the sample. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}. This analysis is applied to all repositories in the sample $S$ for which data was collected. Each attribute is analyzed independently, so given:
+To gather the metrics, the sets of all individual \textit{Attribute} across all \textit{Repositories} are processed by some aggregate function $f$. The input of this function is the union of all sets of a particular \textit{Attribute} over each \textit{Repository} in the sample. For this analysis, the aggregate functions are: \textsc{mean}, \textsc{min}, \textsc{max}, \textsc{stddev}. This analysis is applied to all repositories in the sample $S$ for which data was collected. Each attribute $\alpha$ is analyzed independently, so given:
 \[ g(\alpha) =f \left( \bigcup\limits_{r = 0}^{|S|}  A_{r,\alpha} \right) \]
-each individual attribute is processed via $g(\alpha)$ and will result in the output of the given aggregate function. The result of each aggregate function when applied to the entire sample set of \textit{Repositories} of Table \ref{table:summary_stats}.
+each individual attribute is processed via $g(\alpha)$ and will result in the output of the given aggregate function. The result of each aggregate function when applied to the entire sample set of \textit{Repositories} is shown in Table~\ref{table:summary_stats}.
 
 \subsubsection{Attributes}
 \label{sec:attributes}
-The individual \textit{Attribute} names, or the elements of $A^\prime$, are described below. For detailed summary statistics of these \textit{Attributes}, see Table \ref{table:summary_stats}.\\\\
+The individual \textit{Attribute} names, or the elements of $A^\prime$, are described below. For detailed summary statistics of these \textit{Attributes}, see Table~\ref{table:summary_stats}.\\\\
 \noindent \textbf{\textit{Issues:}}
 The number of issues posted to a repository's issue tracker.\footnote{https://github.com/blog/411-github-issue-tracker}
 
@@ -186,7 +186,7 @@ N = 1000 Repositories
 \end{center}
 \end{table}
 
-Table \ref{table:summary_stats} describes summary statistics of the repository variables described in Section \ref{sec:attributes}. The most evident feature of the result is the large variance. In fact, for the set of tested variables $A$, each variable $A_j$ is observed to have a larger standard deviation than the variable mean:
+Table~\ref{table:summary_stats} describes summary statistics of the repository variables described in Section~\ref{sec:attributes}. The most evident feature of the result is the large variance. In fact, for the set of tested variables $A$, each variable $A_j$ is observed to have a larger standard deviation than the variable mean:
 \begin{equation}
 \forall j \in A \colon \overline{j} < \sigma_{j}
 \label{eq:variance}
@@ -219,7 +219,7 @@ It is possible that other factors, such as issue prioritization, may have a grea
 
 \noindent \textbf{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude.}\\
 Data does not support an exponentially increasing number of distinct Issue Reporters as compared to distinct Committers. 
-As shown in Figure \ref{fig:issue_reporters_committers_scatterplot}, the slope of the relationship between the two variables is less than one. This does not seem to completely align with findings in the Apache Server project~\cite{mockus2000case}. 
+As shown in Figure~\ref{fig:issue_reporters_committers_scatterplot}, the slope of the relationship between the two variables is less than one. This does not seem to completely align with findings in the Apache Server project~\cite{mockus2000case}. 
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_reporters_committers_scatterplot.png}
@@ -227,11 +227,11 @@ As shown in Figure \ref{fig:issue_reporters_committers_scatterplot}, the slope o
 \label{fig:issue_reporters_committers_scatterplot}
 \end{figure}
 
-Figure \ref{fig:issue_reporters_committers_scatterplot}, does however suggest, however, that that the two variables are related. The hypothesis implies that there will be a correlation between the two variables -- which is demonstrated by a reasonably strong correlation coefficient of \input{issue_reporters_committers_scatterplot-correlation}}\unskip. More investigation would be necessary to further examine this finding.\\
+Figure~\ref{fig:issue_reporters_committers_scatterplot}, does however suggest, however, that that the two variables are related. The hypothesis implies that there will be a correlation between the two variables -- which is demonstrated by a reasonably strong correlation coefficient of \input{issue_reporters_committers_scatterplot-correlation}}\unskip. More investigation would be necessary to further examine this finding.\\
 
 \subsection{Research Questions}
 \noindent \textbf{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
-The data in Figure \ref{fig:committers_percentage_pie_chart} represents commit percentage breakdown, or an analysis of developer \textit{Contribution} percentages to a repository. The intent of this measurement is to show how the number of repository commits are distributed among it's committers. The slices represent the distribution of committers that have committed a given percentage of commits (or a \textit{Contribution} percentage, as labeled in the figure) to a project. For example, a small percentage of developers have contributed $95-100\%$ of the commits to a repository, so this is represented as a small slice in the figure. Contrast that to developers that have committed $0-5\%$ of the commits to a repository. This type of contribution is common, and represented as a larger slice. The \textit{Contribution} percentages are calculated by:
+The data in Figure~\ref{fig:committers_percentage_pie_chart} represents commit percentage breakdown, or an analysis of developer \textit{Contribution} percentages to a repository. The intent of this measurement is to show how the number of repository commits are distributed among it's committers. The slices represent the distribution of committers that have committed a given percentage of commits (or a \textit{Contribution} percentage, as labeled in the figure) to a project. For example, a small percentage of developers have contributed $95-100\%$ of the commits to a repository, so this is represented as a small slice in the figure. Contrast that to developers that have committed $0-5\%$ of the commits to a repository. This type of contribution is common, and represented as a larger slice. The \textit{Contribution} percentages are calculated by:
 
 \begin{equation}
 P = \left\{ \frac{ C_u } { |\mathscr{C}| } \times 100 \Big| u \in U \right\}
@@ -249,7 +249,7 @@ Each \textit{Committer}, then, will produce a subset of all \textit{Commits} to 
 \label{fig:committers_percentage_pie_chart}
 \end{figure}
 
-To find the percentages, or set $P$ of Equation \ref{eq:commit_percentage}, the commits by each user $C_u$ are divided by the total number of commits $|\mathscr{C}|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignments is plotted on Figure \ref{fig:committers_percentage_pie_chart}.
+To find the percentages, or set $P$ of Equation~\ref{eq:commit_percentage}, the commits by each user $C_u$ are divided by the total number of commits $|\mathscr{C}|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignments is plotted on Figure~\ref{fig:committers_percentage_pie_chart}.
 
 Most notably, the data shows that a large percentage of developers committed small amounts ($0-5\%$) of the total number of repository commits. This means that a small core are not entirely monopolizing the commits, but rather opportunity exists for users to contribute, even if in small ways. Instances of developer monopolization of commits to a repository (for example, where a developer contributes $95-100\%$ of the total commits), are shown to be small.
 
@@ -259,14 +259,14 @@ Most notably, the data shows that a large percentage of developers committed sma
 \label{fig:committers_histogram}
 \end{figure}
 
-When looking strictly at the number of committers to a repository, however, the notion of a small set of core committers is strongly supported, as the vast majority of repositories have fewer than 10 committers (Figure \ref{fig:committers_histogram}).\\
+When looking strictly at the number of committers to a repository, however, the notion of a small set of core committers is strongly supported, as the vast majority of repositories have fewer than 10 committers (Figure~\ref{fig:committers_histogram}).\\
 
 \noindent \textbf{Research Question 2: How is GitHub changing the OSS process?}\\
 Thung \textit{et al.} show that the social coding aspects of GitHub -- specifically the developer-to-developer connectivity -- enable high collaboration rates~\cite{thung2013network}. In fact, the developer connectivity was shown to be higher than SourceForge and even Facebook. In a recent interview with GitHub staff, the social aspects of GitHub are referred to as ``unique and powerful~\cite{begel2013social},'' which seems to suggest that this is a strong underlying product goal.
 
-Ye also observed~\cite{ye2003toward} that the contribution environment, or ``society,'' is important in providing a framework for developer trust building:
+Ye also observed that the contribution environment, or ``society,'' is important in providing a framework for developer trust building:
 \begin{quote}
-Only in a society where technical supremacy is highly appreciated can developers acquire good reputations among their peers by displaying their skills through free distribution, and often wider acceptance, of their systems.The good reputation attracts attention, trust, and cooperation from others and lays the foundation for advancing the original developers agenda and the establishment and development of OSS communities. 
+Only in a society where technical supremacy is highly appreciated can developers acquire good reputations among their peers by displaying their skills through free distribution, and often wider acceptance, of their systems.The good reputation attracts attention, trust, and cooperation from others and lays the foundation for advancing the original developers agenda and the establishment and development of OSS communities.~\cite{ye2003toward}
 \end{quote}
 
 With this process change can also come cause for concern. The move to Git from a centralized version control system (such as SVN or CVS) is not without its challenges. Differences in philosophy and nomenclature may place added strain on developers~\cite{bird2009promises}. Also, it is not to be assumed that process change is always welcome~\cite{de2009software}, even if it is an improvement. Developers and organizations have existing processes, SCM tools, and workflow patterns -- which all change at a cost.
@@ -291,11 +291,11 @@ Validation and Management are areas of requirements engineering that GitHub has 
 As mentioned, the CTS2 specification made heavy use of the GitHub issue tracker, as well as another OMG\textsuperscript{\textregistered} specification, ServD.\footnote{https://github.com/servd/servd-specification} For open source specifications, or requirements engineering activities, GitHub has shown to be a viable platform. 
 
 \section{Conclusion}
-The data suggests an \textit{evolution} in process, but not necessarily a large shift. A small subset of core developers, a traditional aspect of OSS development~\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}, seems supported by both the summary data in Figure \ref{eq:variance}, and the distribution of committers per repository in Figure \ref{fig:committers_histogram}. Figure \ref{fig:committers_percentage_pie_chart} shows a significant number of participators, albeit with small contribution amounts, in many repositories. This may indicate a lowered entry barrier for participation, and is consistent with the conclusions reached in Research Question 2.
+The data suggests an \textit{evolution} in process, but not necessarily a large shift. A small subset of core developers, a traditional aspect of OSS development~\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}, seems supported by both the summary data in Figure~\ref{eq:variance}, and the distribution of committers per repository in Figure~\ref{fig:committers_histogram}. Figure~\ref{fig:committers_percentage_pie_chart} shows a significant number of participators, albeit with small contribution amounts, in many repositories. This may indicate a lowered entry barrier for participation, and is consistent with the conclusions reached in Research Question 2.
 
-The data does not reflect some traditional aspects of OSS development. Notably, it was not observed that there were far more \emph{Issue Reporters} than code \emph{Committers}, which is contrary to what the Apache Server report concluded~\cite{mockus2000case}. A possible explanation is the amount of variability in the data collected. Assertion \ref{eq:variance}, which is derived from the summary data shown in Table \ref{table:summary_stats}, suggests large amounts of variety in the observed variables. This may suggest a wide range of repository purposes, or specifically, that not all repositories on GitHub are intended to be consumable software artifacts for users, or ``customers.'' A large number of repositories may not be intended for customer consumption, but merely as example code, experimentation, or exercises. Given this, we cannot state any conclusions regarding participation rates of the \emph{Issue Reporters}. More research into categorizing GitHub repositories, and the role of \emph{Issue Reporters} in them, is needed.
+The data does not reflect some traditional aspects of OSS development. Notably, it was not observed that there were far more \emph{Issue Reporters} than code \emph{Committers}, which is contrary to what the Apache Server report concluded~\cite{mockus2000case}. A possible explanation is the amount of variability in the data collected. Assertion~\ref{eq:variance}, which is derived from the summary data shown in Table~\ref{table:summary_stats}, suggests large amounts of variety in the observed variables. This may suggest a wide range of repository purposes, or specifically, that not all repositories on GitHub are intended to be consumable software artifacts for users, or ``customers.'' A large number of repositories may not be intended for customer consumption, but merely as example code, experimentation, or exercises. Given this, we cannot state any conclusions regarding participation rates of the \emph{Issue Reporters}. More research into categorizing GitHub repositories, and the role of \emph{Issue Reporters} in them, is needed.
 
-The most notable \textit{evolution} in OSS process driven by GitHub, we conclude, is the lowered barrier to participation. Qualitative analysis conducted in Research Question 2 suggest a cultural shift~\cite{begel2013social,github_interview} in the participation process. The data also supports high levels of participation, especially Figure \ref{fig:committers_percentage_pie_chart}, which shows that many repositories have large numbers of developers committing small amounts of code. This, we conclude, represents an important \textit{evolution} in OSS development process.
+The most notable \textit{evolution} in OSS process driven by GitHub, we conclude, is the lowered barrier to participation. Qualitative analysis conducted in Research Question 2 suggest a cultural shift~\cite{begel2013social,github_interview} in the participation process. The data also supports high levels of participation, especially Figure~\ref{fig:committers_percentage_pie_chart}, which shows that many repositories have large numbers of developers committing small amounts of code. This, we conclude, represents an important \textit{evolution} in OSS development process.
 
 \section{Acknowledgments}
 We thank Gilberto Fragoso, Ph.D., Paul Alexander, John Britton, and all of the GitHub Staff for interviews, insights and ideas, Harold Solbrig, Craig Stancl, and Dick Hedger for guidance, and Rick Kiefer for his review.
