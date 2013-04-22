@@ -25,7 +25,7 @@ Rochester, MN  55905\\
 \maketitle
 
 \begin{abstract}
-Open Source Software (OSS) projects, or software projects with publicly available source code, are realizing ever more important roles in both personal and business computing. As such, shifts in the way OSS is developed could have impacts on both the quantity and the quality of OSS projects.
+Open Source Software (OSS) projects, or software projects with publicly available source code, are realizing ever more important roles in both personal and business computing. As such, shifts in the way in which OSS is developed could have impacts on both the quantity and the quality of OSS projects.
 
 The development process by which these projects are produced is generally unstructured compared to commercial software, but many projects do exhibit general development patterns. GitHub, a popular OSS code hosting website, along with Git, the site's Source Code Management (SCM) tool of choice, may have the potential to fundamentally change this process by facilitating new patterns and opportunities for developers.
 
@@ -37,7 +37,7 @@ By analyzing a subset of GitHub repositories, this report will show how GitHub h
 \section{Introduction}
 Open Source Software (OSS) has fundamentally changed how we view the Software Development Process~\cite{raymond1999cathedral}. OSS projects are not only viable, but successful and thriving. 
 
-A case study of the Apache Server project~\cite{mockus2000case} shows that a dedicated community can produce software that rivals or exceeds commercial offerings. Furthermore, it showed that even in the unstructured context of OSS, certain structures, hierarchies, and codes of conduct emerge. Contrast the Apache Server project to a successful project on GitHub. Although the spirit and intent may be the same, the tool set is drastically different. The intent of this work is to explore how GitHub facilitates this process, and also how it may be causing it to evolve.
+A case study of the Apache Server project~\cite{mockus2000case} showed that a dedicated community can produce software that rivals or exceeds commercial offerings. Furthermore, it showed that even in the unstructured context of OSS, certain structures, hierarchies, and codes of conduct emerge. Contrast the Apache Server project to a successful project on GitHub. Although the spirit and intent may be the same, the tool set is drastically different. The intent of this work is to explore how GitHub facilitates this process, and also how it may be causing it to evolve.
 
 GitHub\footnote{https://github.com/} is a popular code hosting website that uses Git Source Code Management (SCM).\footnote{http://git-scm.com/} Along with hosting software repositories, GitHub incorporates the social aspects of development. GitHub users have community-visible profiles, and user actions can be tracked and followed by other community actions. This type of social integration of a user's identity and actions is unique to GitHub~\cite{dabbish2012social}. 
 
@@ -46,7 +46,7 @@ Git also allows for a variety of work flows~\cite{chacon2009pro}. These work flo
 
 To better understand quantitatively the GitHub process, three hypotheses are introduced. The goal of these hypotheses is to bridge the gap between the more qualitative research of GitHub~\cite{dabbish2012social,begel2013social} and the statistical analysis of data from a random sampling of GitHub projects.
 
-In addition, three supporting research questions are proposed. These questions will draw upon data from this work, but also reference several case studies to better represent how GitHub may be changing the way in which OSS development is conducted. These qualitative observations, paired with the more quantitative data analysis, allows for a broad description of the way that GitHub is changing the Software Engineering landscape for OSS.
+In addition, three supporting research questions are proposed. These questions will draw upon data from this work, but also reference several case studies to better represent how GitHub may be changing the way in which OSS development is conducted. These qualitative observations, paired with the more quantitative data analysis, allow for a broad description of the way that GitHub is changing the Software Engineering landscape for OSS.
 
 \subsection{Hypotheses}
 The following hypotheses are presented in an effort to better understand the GitHub development process by analyzing data from actual GitHub projects. Each hypothesis will be backed by previous research in an attempt to show concrete ways in which GitHub may be changing the OSS development process. Where possible, results from previous research on the Apache Server~\cite{mockus2000case} is compared, as this work closely aligns with Hypothesis 2 and 3.\\
@@ -171,6 +171,7 @@ The number of distinct users that have summited at least one \textit{Commit}.
 \section{Results}
 
 \subsection{Summary Statistics}
+\label{sec:summary_statistics}
 \begin{table}[!ht]
 \begin{center}
 \begin{tabular}{rrrrrrr}
@@ -191,7 +192,7 @@ Table~\ref{table:summary_stats} describes summary statistics of the repository v
 \forall j \in A \colon \overline{j} < \sigma_{j}
 \label{eq:variance}
 \end{equation}
-All measured variables demonstrated this characteristic.
+All measured variables demonstrated this characteristic. We will refer to this characteristic as Summary Data Assertion \ref{eq:variance}.
 
 The sample ($N = 1000$) GitHub repositories were selected, at random, out of a total of 5.7 million~\cite{githubPress} public GitHub repositories.
 
@@ -201,7 +202,7 @@ A correlation coefficient of \input{watcher_forks_scatterplot-correlation}} was 
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/watcher_forks_scatterplot.png}
-\caption{Repostitory watchers and forks}
+\caption{Repository watchers and forks}
 \end{figure}
 
 The data reinforces the hypothesis, as does other research in the area. Even though there are arguments that the number of Forks is the true measure of project success~\cite{baudry2012towards}, the data suggests that the two measures are related. Also, \textit{Dabbish et al.} have noted that the number of Watches can be a key for others to gauge interest in a project, and thus determine if they should participate~\cite{dabbish2013leveraging}. If the number of Watchers of a repository serves as a social cue for participation, even ``passive'' involvement with a project (Watching) could influence the ``active'' participation (Forking). This could possibly contribute to the correlation of the two variables. It is important to note, however, that we cannot conclude any causal relationship between the two variables. Concluding whether the social cue for participation is the Forks, the Watchers, or some combination, is not possible given the data and methods used.\\
@@ -249,7 +250,7 @@ Each \textit{Committer}, then, will produce a subset of all \textit{Commits} to 
 \label{fig:committers_percentage_pie_chart}
 \end{figure}
 
-To find the percentages, or set $P$ of Equation~\ref{eq:commit_percentage}, the commits by each user $C_u$ are divided by the total number of commits $|\mathscr{C}|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignments is plotted on Figure~\ref{fig:committers_percentage_pie_chart}.
+To find the percentages, or set $P$ of Equation~\ref{eq:commit_percentage}, the commits by each user $C_u$ are divided by the total number of commits $|\mathscr{C}|$, yielding the set of contribution percentages $P$ for the repository. Elements of $P$ are then assigned to ranges $0-5\%$, $5-10\%$, $10-50\%$, $50-95\%$, and $95-100\%$ (with shared values inclusive to the larger range). The distribution of this range assignment is plotted on Figure~\ref{fig:committers_percentage_pie_chart}.
 
 Most notably, the data shows that a large percentage of developers committed small amounts ($0-5\%$) of the total number of repository commits. This means that a small core are not entirely monopolizing the commits, but rather opportunity exists for users to contribute, even if in small ways. Instances of developer monopolization of commits to a repository (for example, where a developer contributes $95-100\%$ of the total commits), are shown to be small.
 
@@ -262,7 +263,7 @@ Most notably, the data shows that a large percentage of developers committed sma
 When looking strictly at the number of committers to a repository, however, the notion of a small set of core committers is strongly supported, as the vast majority of repositories have fewer than 10 committers (Figure~\ref{fig:committers_histogram}).\\
 
 \noindent \textbf{Research Question 2: How is GitHub changing the OSS process?}\\
-Thung \textit{et al.} show that the social coding aspects of GitHub -- specifically the developer-to-developer connectivity -- enable high collaboration rates~\cite{thung2013network}. In fact, the developer connectivity was shown to be higher than SourceForge and even Facebook. In a recent interview with GitHub staff, the social aspects of GitHub are referred to as ``unique and powerful~\cite{begel2013social},'' which seems to suggest that this is a strong underlying product goal.
+Thung \textit{et al.} showed that the social coding aspects of GitHub -- specifically the developer-to-developer connectivity -- enabled high collaboration rates~\cite{thung2013network}. In fact, the developer connectivity was shown to be higher than SourceForge and even Facebook. In a recent interview with GitHub staff, the social aspects of GitHub were referred to as ``unique and powerful~\cite{begel2013social},'' which seems to suggest that this is a strong underlying product goal.
 
 Ye also observed that the contribution environment, or ``society,'' is important in providing a framework for developer trust building:
 \begin{quote}
@@ -278,14 +279,14 @@ According to GitHub Staff member John Britton, lowering the barrier to participa
 GitHub moved the open source community away from a permission culture. Prior to GitHub, contributing to an open source project was very difficult and often involved asking permission. By allowing people to fork a repository and make changes without asking for permission, GitHub has made contributing to someone else's project much easier than it has ever been. By submitting a Pull Request with suggested changes, project maintainers and contributors have a place to discuss changes to code that is already written and to refine it.~\cite{github_interview}
 \end{quote}
 
-Spending large amounts of time and resources to participate is a detriment to knowledge-sharing in general, not just OSS development~\cite{ardichvili2003motivation}. Because of this, we conclude that this permissive culture of knowlege-sharing that GitHub fosters represents an important change in the OSS process.\\
+Spending large amounts of time and resources to participate is a detriment to knowledge-sharing in general, not just OSS development~\cite{ardichvili2003motivation}. Because of this, we conclude that this permissive culture of knowledge-sharing that GitHub fosters represents an important change in the OSS process.\\
 
 \noindent \textbf{Research Question 3: Can GitHub be used for more than code artifacts?}\\
 The OMG\textsuperscript{\textregistered} standardization process is a process by which products strive to produce an interoperability standard by way of an industry standards consortium~\cite{omgTechProcess}.
 The standardization process itself aims to, at its conclusion, produce a set of model artifacts containing sufficient detail such that when interpreted and implemented, produce interoperable software.
 At a conceptual level, this can be thought of as a software requirements engineering process as much as a standardization process. If so, of the five main tasks of requirements engineering, Elicitation, Analysis and Negotiation, Documentation, Validation, and Management,~\cite{sommerville1998requirements} we can show that GitHub is an appropriate forum for many of them.
 
-As a case study, the CTS2 OMG\textsuperscript{\textregistered} Specification~\cite{cts2} used a GitHub issue tracker\footnote{https://github.com/cts2/cts2-specification/issues} to track specification changes. Elicitation, Analysis and Negotiation were natural fits for the issue tracker. This was chosen in part because the barrier to participation was very small (only a GitHub account was needed), and issue tracker itself allowed for dialogs in the form of comments. Because customer involvement is critical to these activities~\cite{paetsch2003requirements}, ease of contribution was a main concern. OMG\textsuperscript{\textregistered} has a predescribed format for requirements Documentation, but using the GitHub issue API,\footnote{http://developer.github.com/v3/issues/} much of this documentation can be automated.
+As a case study, the CTS2 OMG\textsuperscript{\textregistered} Specification~\cite{cts2} used a GitHub issue tracker\footnote{https://github.com/cts2/cts2-specification/issues} to track specification changes. Elicitation, Analysis and Negotiation were natural fits for the issue tracker. This was chosen in part because the barrier to participation was very small (only a GitHub account was needed), and the issue tracker itself allowed for dialogs in the form of comments. Because customer involvement is critical to these activities~\cite{paetsch2003requirements}, ease of contribution was a main concern. OMG\textsuperscript{\textregistered} has a predescribed format for requirements Documentation, but using the GitHub issue API,\footnote{http://developer.github.com/v3/issues/} much of this documentation can be automated.
 Validation and Management are areas of requirements engineering that GitHub has interesting solutions for. First, in order to track (or validate) changes to the specification, when the actual specification is modified, the commit that modified it can be traced to a named issue by simply putting the issue number in the commit log. This level of traceability is powerful, as it allows every change to the specification artifacts to be tracked consistently to an open issue. As the normal OMG\textsuperscript{\textregistered} process proceeds, requirements can be managed through ``tagging'' the issues. By allowing issues to be grouped by arbitrary tags, users are more free to adapt their own work flow. For instance, when community voting on issues needed to be done for CTS2, a simple ``ready for vote'' tag signified to the voting board exactly what was under consideration
 
 As mentioned, the CTS2 specification made heavy use of the GitHub issue tracker, as well as another OMG\textsuperscript{\textregistered} specification, ServD.\footnote{https://github.com/servd/servd-specification} For open source specifications, or requirements engineering activities, GitHub has shown to be a viable platform. 
@@ -293,7 +294,7 @@ As mentioned, the CTS2 specification made heavy use of the GitHub issue tracker,
 \section{Conclusion}
 The analysis suggests an \textit{evolution} in process, but not necessarily a large shift. We classify this as an \textit{evolution} because although many of the traditional aspects of the OSS development process remain, there are notable differences. For example, a small subset of core developers, a traditional aspect of OSS development~\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}, seems supported by both the summary data in Figure~\ref{eq:variance}, and the distribution of committers per repository in Figure~\ref{fig:committers_histogram}. Figure~\ref{fig:committers_percentage_pie_chart} shows a significant number of participators, albeit with small contribution amounts, in many repositories. This may indicate a lowered entry barrier for participation, and is consistent with the conclusions reached in Research Questions 1 and 2.
 
-The data does not, however, reflect some other traditional aspects of OSS development. Notably, it was observed that data gathered for Hypothesis 2 and Hypothesis 3 seemed contrary to what the Apache Server report concluded~\cite{mockus2000case}. A possible explanation is the amount of variability in the data collected. Assertion~\ref{eq:variance}, which is derived from the summary data shown in Table~\ref{table:summary_stats}, suggests large amounts of variety in the observed variables. This may suggest a wide range of repository purposes, or specifically, that not all repositories on GitHub are intended to be consumable software artifacts for users, or ``customers.'' A large number of repositories may not be intended for customer consumption, but merely as example code, experimentation, or exercises. Given this, and specific reasons outlined in the hypotheses themselves, we cannot state any definitive conclusions regarding these two hypotheses. More research into categorizing GitHub repositories is needed.
+The data does not, however, reflect some other traditional aspects of OSS development. Notably, it was observed that data gathered for Hypothesis 2 and Hypothesis 3 seemed contrary to what the Apache Server report concluded~\cite{mockus2000case}. A possible explanation is the amount of variability in the data collected. Summary Data Assertion~\ref{eq:variance} (Section~\ref{sec:summary_statistics}), which is derived from the summary data shown in Table~\ref{table:summary_stats}, suggests large amounts of variety in the observed variables. This may suggest a wide range of repository purposes, or specifically, that not all repositories on GitHub are intended to be consumable software artifacts for users, or ``customers.'' A large number of repositories may not be intended for customer consumption, but merely as example code, experimentation, or exercises. Given this, and specific reasons outlined in the hypotheses themselves, we cannot state any definitive conclusions regarding these two hypotheses. More research into categorizing GitHub repositories is needed.
 
 The most notable \textit{difference} in OSS process driven by GitHub, considering both the quantitative and qualitative analysis, is the lowered barrier to participation. Qualitative analysis conducted in Research Question 2 suggests a cultural shift~\cite{begel2013social,github_interview} in the participation process. The data also supports high levels of participation, especially Figure~\ref{fig:committers_percentage_pie_chart}, which shows that many repositories have large numbers of developers committing small amounts of code. This, we conclude, represents an important \textit{evolution} in the OSS development process.
 
