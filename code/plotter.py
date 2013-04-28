@@ -72,13 +72,13 @@ class ScatterPlot:
 		plt.scatter(x,y)
 
 		correlation_coefficient = "%.4f" % numpy.corrcoef(x,y)[0,1]
-		title('Correlation Coefficient: ' + correlation_coefficient)
+		title('Correlation Coefficient: ' + correlation_coefficient, fontsize=18)
 
 		if float(correlation_coefficient) > 0.5:
 			plt.plot(x,y,'bo',x,m*numpy.array(x)+b,'-k',linewidth=2)
 
-		plt.xlabel(self.xlabel)
-		plt.ylabel(self.ylabel)
+		plt.xlabel(self.xlabel,fontsize=18)
+		plt.ylabel(self.ylabel,fontsize=18)
 		plt.xlim(self.xrange)
 		plt.ylim(self.yrange)
 	
@@ -112,8 +112,8 @@ class Histograph:
 
 		fig = plt.figure() 
 		plt.hist(x, range=self.range)
-		plt.xlabel(self.xlabel)
-		plt.ylabel(self.ylabel)
+		plt.xlabel(self.xlabel,fontsize=18)
+		plt.ylabel(self.ylabel,fontsize=18)
 
 		F = gcf()
 		F.savefig("../paper/images/"+filename+".png")
