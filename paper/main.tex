@@ -58,7 +58,7 @@ In GitHub, a \emph{watch} is a user act of subscribing to changes in a repositor
 
 A \emph{fork} is the creation of a personal copy of a repository~\cite{dabbish2012social}, from which changes may be made without impacting the original code source. A \emph{fork} is an \emph{active} action, as it signifies both involvement and intent to contribute. It should be noted, however, that it only signifies \emph{intent} -- a \emph{fork} of a repository could be made and no further actions taken.
 
-As \emph{watches} don't necessarily signal intent to contribute, a positive direction for an OSS project is to not only increase the number of \emph{watchers}, but also the number of \emph{forks}. As both signify a general general interest in the project, it is expected that there will be some correlation between the two.\\
+As \emph{watches} don't necessarily signal intent to contribute, a positive direction for an OSS project is to not only increase the number of \emph{watchers}, but also the number of \emph{forks}. As both signify a general interest in the project, it is expected that there will be some correlation between the two.\\
 
 \noindent \textbf{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
 In OSS, a project \emph{fork} has at times carried negative connotations, and has even been referred to as a hazzard~\cite{kogut2001open}. In the context of Git and GitHub, however, a \emph{fork} is a positive occurrence for a project, as it signifies greater project involvement. As Git allows for easy merging of \emph{forks}, code contributions in the form of defect fixes can be incorporated quickly. Because of this, it is expected that \emph{Issue Resolution Time} will decrease as the number of \emph{forks} increases.
@@ -76,7 +76,7 @@ Because issue reporting is of low risk to the code base, but has potentially hig
 To expand the analysis scope slightly, three qualitative research questions are posed. These, although backed by analyzed data where possible, are intended to show broader patterns, ideas, and motivations around the use of GitHub. Where possible, interviews~\cite{begel2013social} were conducted to explore high level concepts and motivations.\\
 
 \noindent \textbf{Research Question 1: Are GitHub projects primarily focused around a small set of core Committers?}\\
-A small core of developers contributing to a project seems to be a well entrenched pattern of OSS development~\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site Sourceforge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers~\cite{krishnamurthy2002cave}. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changed this?\\
+A small core of developers contributing to a project seems to be a well entrenched pattern of OSS development~\cite{mockus2000case,mockus2002two,krishnamurthy2002cave}. At the extreme of this, a study of projects on the software hosting site SourceForge\footnote{http://sourceforge.net} found that a large percentage of OSS development is done by lone developers~\cite{krishnamurthy2002cave}. Is a small core of developers intrinsic to OSS development, or have the social aspects of GitHub and the distributed nature of Git changed this?\\
 
 \noindent \textbf{Research Question 2: How is GitHub changing the OSS process?}\\
 The social aspects of GitHub are an important part of the development experience~\cite{dabbish2012social}. User interactions and social pressures can drive OSS development in interesting ways. Social aspects of OSS development have existed, however, before GitHub, with mailing lists~\cite{mockus2000case}, gift giving mechanisms~\cite{bergquist2008power}, and other collaboration tools. What is GitHub doing to facilitate and capitalize on the social aspects of OSS development, and how might this influence the OSS development process?\\
@@ -104,11 +104,11 @@ Data collection was done using the GitHub REST API.\footnote{http://developer.gi
 \end{algorithmic}
 \end{algorithm}
 
-When a random repository has been selected, the \textsc{isOrgRepo} function will filter out all non \textit{Organization} owned repositories. Next, the \textsc{store} function accepts as an input the given repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is described in Figure~\ref{fig:er_diagram}.
+To select a repository, a random word is selected from an arbitrary list via the \textsc{random}($word\_list$) function. Using the GitHub search API, a list of repositories containing that word in the description is retrieved using the \textsc{github\_search}($word$) function, from which a one is randomly select using \textsc{random}($repos$). When a random repository has been selected, the \textsc{isOrgRepo} function will filter out all non \textit{Organization} owned repositories. Next, the \textsc{store} function accepts as an input the given repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is described in Figure~\ref{fig:er_diagram}.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/er.png}
-\caption{GitHub Date Entity Relationship diagram}
+\caption{GitHub data entity relationship diagram}
 \label{fig:er_diagram}
 \end{figure}
 
@@ -154,9 +154,9 @@ The number of issues in a repository in a state of \textsc{closed} at the time o
 The number of issues in a repository in a state of \textsc{open} at the time of processing.
 
 \noindent \textbf{\textit{Issue Close Time:}}
-The average time (in Days) taken to close a given issue in a repository. Non-\textsc{closed} issues were not counted.\\
+The average time (in days) taken to close a given issue in a repository. Non-\textsc{closed} issues were not counted.
 
-The average \textit{issue close time} is calculated using the following method: Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds. Let $I$ equal the Set of \textit{Issues} in a given repository, with elements comprised of tuples $(\tau, \tau^\prime)$, where $\tau$ is \textit{Issue Open Date} and $\tau^\prime$ is \textit{Issue Close Date}. We calculate \textit{Issue Close Time} by: 
+The average \textit{Issue Close Time} is calculated using the following method: Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds. Let $I$ equal the Set of \textit{Issues} in a given repository, with elements comprised of tuples $(\tau, \tau^\prime)$, where $\tau$ is \textit{Issue Open Date} and $\tau^\prime$ is \textit{Issue Close Date}. We calculate \textit{Issue Close Time} by: 
 
 \[ \Delta = d\left( \frac{\sum_{i \in I} s\left(p_{2}(i) \right) - s\left(p_{1}(i) \right)  } {|I|} \right) \]
 
@@ -182,7 +182,7 @@ Variable & Mean & Min & Max & Std. Dev. \\
 \hline
 \end{tabular}
 N = 1000 Repositories
-\caption{GitHub Summary Statistics}
+\caption{GitHub summary statistics}
 \label{table:summary_stats}
 \end{center}
 \end{table}
@@ -208,11 +208,11 @@ A correlation coefficient of \input{watcher_forks_scatterplot-correlation}} was 
 The data reinforces the hypothesis, as does other research in the area. Even though there are arguments that the number of Forks is the true measure of project success~\cite{baudry2012towards}, the data suggests that the two measures are related. Also, \textit{Dabbish et al.} have noted that the number of Watches can be a key for others to gauge interest in a project, and thus determine if they should participate~\cite{dabbish2013leveraging}. If the number of Watchers of a repository serves as a social cue for participation, even ``passive'' involvement with a project (Watching) could influence the ``active'' participation (Forking). This could possibly contribute to the correlation of the two variables. It is important to note, however, that we cannot conclude any causal relationship between the two variables. Concluding whether the social cue for participation is the Forks, the Watchers, or some combination, is not possible given the data and methods used.\\
 
 \noindent \textbf{Hypothesis 2: As the number Repository Forks increase, the Issue Resolution Time will decrease.}\\
-No significant correlation was found between the number of repository forks and issue resolution time. It is important to note, however, that issue resolution time is not necessarily related to software product quality in the context of GitHub. We can assert that for several reasons. \textit{First}, GitHub issues are not necessarily product defects. Issues may be feature requests, comments, or general support questions. \textit{Second}, GitHub projects may have primary issue tracking services elsewhere, while using the GitHub issues as secondary services or not at all. \textit{Third}, Cultural shifts in how testing is approached may have significant impact on quality. Pham \textit{et al.} explore an emerging ``testing culture'' in GitHub, which suggests that GitHub may be facilitating testing by making it more \emph{triable} by lowering entry barriers, and makng the process as a whole more \emph{observable}. This aspect is something which could have sizable impacts on software quality but wouldn't necessarily be reflected in this metric~\cite{phamcreating}.
+No significant correlation was found between the number of repository forks and issue resolution time, as shown by the data represented in Figure~\ref{fig:issue_close_time_forks_scatterplot}. It is important to note, however, that issue resolution time is not necessarily related to software product quality in the context of GitHub. We can assert that for several reasons. \textit{First}, GitHub issues are not necessarily product defects. Issues may be feature requests, comments, or general support questions. \textit{Second}, GitHub projects may have primary issue tracking services elsewhere, while using the GitHub issues as secondary services or not at all. \textit{Third}, cultural shifts in how testing is approached in GitHub may have significant impacts on software quality. Pham \textit{et al.} explore an emerging ``testing culture'' in GitHub, which suggests that GitHub may be facilitating testing by making it more \emph{triable} by lowering entry barriers, and making the process as a whole more \emph{observable}. This aspect is something which could have sizable impacts on software quality but wouldn't necessarily be reflected in this metric~\cite{phamcreating}.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_close_time_forks_scatterplot.png}
-\caption{Repository issue close time and number of forks}
+\caption{Repository issue close time (in days) and number of forks}
 \label{fig:issue_close_time_forks_scatterplot}
 \end{figure}
 
@@ -239,7 +239,7 @@ P = \left\{ \frac{ C_u } { |\mathscr{C}| } \times 100 \Big| u \in U \right\}
 \label{eq:commit_percentage}
 \end{equation}
 
-Where $U$ is the Set of \textit{Committers} to a given \textit{Repository}, $\mathscr{C}$ is the set of all \textit{Commits} to a \textit{Repository}, and $C_u$ denotes sets of \textit{Commits} by an individual \textit{Committers} to a \textit{Repository}, or:
+Where $U$ is the set of \textit{Committers} to a given \textit{Repository}, $\mathscr{C}$ is the set of all \textit{Commits} to a \textit{Repository}, and $C_u$ denotes sets of \textit{Commits} by an individual \textit{Committers} to a \textit{Repository}, or:
  \[ \{ C_u \}_{u \in U} \]
 
 Each \textit{Committer}, then, will produce a subset of all \textit{Commits} to a a \textit{Repository}, or $C_u \subset \mathscr{C}$. 
