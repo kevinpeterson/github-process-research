@@ -123,7 +123,7 @@ As stated, the main focus of data collection was to gather metrics pertaining to
 
 \[A^\prime = \{i, c, i^\prime, i^{\prime\prime}, \Delta, \omega, \epsilon\}\]
 
-Where $i$ = {\textit{Issues}, $c$ = {\textit{Commits}, $i^\prime$ = {\textit{Closed Issues}, $i^{\prime\prime}$ = {\textit{Open Issues}, $\Delta$ = {\textit{Issue Close Time}, $\omega$ = {\textit{Issue Creators}, and $\epsilon$ = {\textit{Committers}.
+Where $i$ = {\textit{Issues}, $c$ = {\textit{Commits}, $i^\prime$ = {\textit{Closed Issues}, $i^{\prime\prime}$ = {\textit{Open Issues}, $\Delta$ = {\textit{Issue Close Time}, $\omega$ = {\textit{Issue Reporters}, and $\epsilon$ = {\textit{Committers}.
 
 All analyzed \textit{Repositories} can be thought of as the Indexed Family of \textit{Attribute} Sets, or a set of sets of \textit{Attributes}. Let the set of these sets of \textit{Attributes} be called $S$, or the \textit{Repository Sample}. We can label the \textit{Attribute} sets by arbitrary integers 0 through $|S|$, or:
 \[ \{A_i\}_{i \in \{0,1,2 ... |S|\} }\]
@@ -162,7 +162,7 @@ The average \textit{Issue Close Time} is calculated using the following method: 
 
 Where for each issue $i$ in $I$, the \textit{Issue Open Date} $s( p_{1}(i))$ is subtracted from the \textit{Issue Close Date} $s( p_{2}(i))$, where $p_{1}(i)$ and $p_{2}(i)$ denote projections of the tuple, or \textit{Issue Open Date} and \textit{Issue Close Date}, respectively. The result of this is averaged and converted into a Date via $d(x)$, resulting in the average issue close time interval $\Delta$.
 
-\noindent \textbf{\textit{Issue Creators:}}
+\noindent \textbf{\textit{Issue Reporters:}}
 The number of distinct users that have opened at least one \textit{Issue}.
 
 \noindent \textbf{\textit{Committers:}}
@@ -220,7 +220,7 @@ It is possible that other factors, such as issue prioritization, may have a grea
 
 \noindent \textbf{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude.}\\
 Data does not support an exponentially increasing number of distinct Issue Reporters as compared to distinct Committers. 
-As shown in Figure~\ref{fig:issue_reporters_committers_scatterplot}, the slope of the relationship between the two variables is less than one. This does not seem to completely align with findings in the Apache Server project~\cite{mockus2000case}. 
+As shown in Figure~\ref{fig:issue_reporters_committers_scatterplot}, the number of Issue Reporters is larger than the number of Committers, but not by an order of magnitude. Table~\ref{table:summary_stats} reinforces this, as the averages of the two variables are closer than the hypothesis states. This does not seem to completely align with findings in the Apache Server project~\cite{mockus2000case}. 
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/issue_reporters_committers_scatterplot.png}

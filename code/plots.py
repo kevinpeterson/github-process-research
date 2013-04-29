@@ -52,7 +52,7 @@ from
         issue
     group by repository_id) issues ON issues.repository_id = commits.repository_id
 '''
-issue_reporters_committers_scatterplot = ScatterPlot(issue_reporters_committers_query, "Committers", "Issue Reoprters", (0,140), (0,140))
+issue_reporters_committers_scatterplot = ScatterPlot(issue_reporters_committers_query, "Issue Reporters", "Committers", (0,140), (0,140))
 issue_reporters_committers_scatterplot.plot("issue_reporters_committers_scatterplot")
 
 issue_close_time_forks_query = '''

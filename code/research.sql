@@ -45,7 +45,7 @@ from
         issues.close_date is not null
     group by repository_id) issues 
 union select 
-    'Issue Creators' as var, avg(counts), min(counts), max(counts), std(counts)
+    'Issue Reporters' as var, avg(counts), min(counts), max(counts), std(counts)
 from
     (select 
         count(distinct creator) as counts
