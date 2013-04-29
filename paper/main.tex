@@ -49,7 +49,7 @@ To better understand quantitatively the GitHub process, three hypotheses are int
 In addition, three supporting research questions are proposed. These questions will draw upon data from this work, but also reference several case studies to better represent how GitHub may be changing the way in which OSS development is conducted. These qualitative observations, paired with the more quantitative data analysis, allow for a broad description of the way that GitHub is changing the Software Engineering landscape for OSS.
 
 \subsection{Hypotheses}
-The following hypotheses are presented in an effort to better understand the GitHub development process by analyzing data from actual GitHub projects. Each hypothesis will be backed by previous research in an attempt to show concrete ways in which GitHub may be changing the OSS development process. Where possible, results from previous research on the Apache Server~\cite{mockus2000case} is compared, as this work closely aligns with Hypothesis 2 and 3.\\
+The following hypotheses are presented in an effort to better understand the GitHub development process by analyzing data from actual GitHub projects. Each hypothesis will be backed by previous research in an attempt to show concrete ways in which GitHub may be changing the OSS development process. Where possible, results from previous research on the Apache Server~\cite{mockus2000case} are compared, as this work closely aligns with Hypothesis 2 and 3.\\
 
 \noindent \textbf{Hypothesis 1: As the number of Watchers increase, the number of Repository Forks will increase.}\\
 In Open Source Software, a feeling of community belonging can be intrinsically motivating to developers~\cite{lakhani2003hackers}. This feeling of belonging can be expressed passively, as a \emph{watch}, or actively, as a \emph{fork} of a repository. 
@@ -67,7 +67,7 @@ The Apache Project noted that a rapid response to problems can be obtained becau
 
 This hypothesis is, ultimately, an examination of ``Linus Law"~\cite{raymond1999cathedral} in the context of GitHub. In other words, the more exposure the code gets (in terms of \emph{forks}), the easier bugs will be to find and fix.\\
 
-\noindent \textbf{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude}\\
+\noindent \textbf{Hypothesis 3: There will be more Issue Reporters than Committers by an order of magnitude.}\\
 Research into the Apache Server project observed that there were far more \emph{Issue Reporters} than there were code \emph{Committers}~\cite{mockus2000case}. The Apache Server project is an excellent case study in this type of Developer Hierarchy. Apache is built around a small set of {\it Core Developers}, followed by {\it Defect Repairers} and {\it Defect Reporters}. Each level of this hierarchy brings with it an order of magnitude increase in number of participants. The 10-15 {\it Core Developers} contribute around 80\% of the new functionality, while the rest of the 400 code contributors focus primarily on bug fixes. The {\it Defect Reporters} were by far the largest group, with over 3000 individuals submitting bug reports.
 
 Because issue reporting is of low risk to the code base, but has potentially high value, it is a perfect way for large numbers of people to contribute. It is expected that the findings of the Apache Server project research will hold true for GitHub projects as well.
@@ -104,7 +104,7 @@ Data collection was done using the GitHub REST API.\footnote{http://developer.gi
 \end{algorithmic}
 \end{algorithm}
 
-To select a repository, a random word is selected from an arbitrary list via the \textsc{random}($word\_list$) function. Using the GitHub search API, a list of repositories containing that word in the description is retrieved using the \textsc{github\_search}($word$) function, from which a one is randomly select using \textsc{random}($repos$). When a random repository has been selected, the \textsc{isOrgRepo} function will filter out all non \textit{Organization} owned repositories. Next, the \textsc{store} function accepts as an input the given repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is described in Figure~\ref{fig:er_diagram}.
+To select a repository, a random word is selected from an arbitrary list via the \textsc{random}($word\_list$) function. Using the GitHub search API, a list of repositories containing that word in the description is retrieved using the \textsc{github\_search}($word$) function, from which one repository is randomly selected using \textsc{random}($repos$). When a random repository has been selected, the \textsc{isOrgRepo} function will filter out all non \textit{Organization} owned repositories. Next, the \textsc{store} function accepts as an input the given repository. The purpose of this function is to persist the given repository to a database for further analysis. Results were stored in a MySQL relational database management system. The database schema to store the data is described in Figure~\ref{fig:er_diagram}.
 
 \begin{figure}
 \includegraphics[height=3in,width=3in]{images/er.png}
@@ -156,7 +156,7 @@ The number of issues in a repository in a state of \textsc{open} at the time of 
 \noindent \textbf{\textit{Issue Close Time:}}
 The average time (in days) taken to close a given issue in a repository. Non-\textsc{closed} issues were not counted.
 
-The average \textit{Issue Close Time} is calculated using the following method: Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds. Let $I$ equal the Set of \textit{Issues} in a given repository, with elements comprised of tuples $(\tau, \tau^\prime)$, where $\tau$ is \textit{Issue Open Date} and $\tau^\prime$ is \textit{Issue Close Date}. We calculate \textit{Issue Close Time} by: 
+The average \textit{Issue Close Time} is calculated using the following method: Let $d(x)$ be a function that converts seconds to a Date, and let $s(x)$ be a function that converts a Date to seconds. Let $I$ equal the set of \textit{Issues} in a given repository, with elements comprised of tuples $(\tau, \tau^\prime)$, where $\tau$ is \textit{Issue Open Date} and $\tau^\prime$ is \textit{Issue Close Date}. We calculate \textit{Issue Close Time} by: 
 
 \[ \Delta = d\left( \frac{\sum_{i \in I} s\left(p_{2}(i) \right) - s\left(p_{1}(i) \right)  } {|I|} \right) \]
 
