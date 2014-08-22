@@ -1,6 +1,7 @@
 # Manuscript
+The LaTex-based report of findings based on [the data analysis code](../code), literature reivew, and individual interviews.
 
-## Build the PDF
-* __Install LaTex__ - There are several ways to install the LaTex packages needed to comple - refer to the [LaTex documentation](http://latex-project.org/ftp.html) for more info.
-* Executing ``publish.sh`` will build the PDF, placing it: ``build/main.pdf``
+## Generate the PDF
+* __Install LaTeX__ - There are several ways to install the LaTex packages needed to comple - refer to the [LaTex documentation](http://latex-project.org/ftp.html) for more info.
+* __Compile LateX Files__ - Executing ``publish.sh`` will generate the PDF to ``paper/build/main.pdf``
   
