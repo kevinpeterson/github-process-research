@@ -9,6 +9,16 @@ Python code for data analytics and LaTex image/table generation.
 * __research.py__ - Gathers and stores data using the [GitHub REST API](https://developer.github.com/v3/).
 * __research.sql__ - SQL analytical queries used to analyze data from the data gathering process.
 
+## Prerequisites
+* [MySQL](http://www.mysql.com/) version 5.5+
+* [Python](https://www.python.org/) version 2.7+ with the following extra modules:
+    * [matplotlib](http://matplotlib.org/)
+    * [NumPy](http://www.numpy.org/)
+    * [MySQL-Python](http://mysql-python.sourceforge.net/)
+    * [SQLAlchemy](http://www.sqlalchemy.org/)
+    * [Requests](http://docs.python-requests.org/)
+* A valid GitHub user account
+
 ## Configuration
 A file called ```config.py``` must be added to this directory. This file will contain database and GitHub credentials. The structure of this file will be as follows:
 
