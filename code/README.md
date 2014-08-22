@@ -5,7 +5,7 @@ Python code for data analytics and LaTex image/table generation.
 ## Source Files
 * __get_summary_data.py__ - Builds the data summary table (_Table 1: GitHub summary statistics_).
 * __plots.py__ - Creates all graphs and tables used in the manuscript.
-* __plotter.py__ - A helper class for creating ScatterPlots and Histographs.
+* __plotter.py__ - A helper class for creating Scatterplots and Histographs.
 * __research.py__ - Gathers and stores data using the [GitHub REST API](https://developer.github.com/v3/).
 * __research.sql__ - SQL analytical queries used to analyze data from the data gathering process.
 
@@ -20,7 +20,7 @@ Python code for data analytics and LaTex image/table generation.
 * A valid GitHub user account
 
 ## Configuration
-A file called ```config.py``` must be added to this directory. This file will contain database and GitHub credentials. The structure of this file will be as follows:
+A file called ```config.py``` must be added to the ```code``` directory. This file will contain database and GitHub credentials. The structure of this file will be as follows:
 
 ```
 #Database Config
@@ -40,7 +40,7 @@ Data gathing is done by examining random repositories via the [GitHub REST API](
 
     python research.py
     
-__Note:__ The data gathering process may take several hours (or longer, depending on desired sample size). Modifying the ```crawl(5000)``` statement (at the bottom of ```research.py``` will control sample size.
+__Note:__ The data gathering process may take several hours (or longer, depending on desired sample size). Modifying the ```crawl(5000)``` statement (at the bottom of ```research.py```) will control sample size.
 
 __Note:__ Because of GitHub API [rate limiting](https://developer.github.com/v3/#rate-limiting), the data gathering process will automatically pause when the alloted number of requests has been reached. Data gathering will automatically resume after an hour of waiting to allow for re-allocation of hourly requests.
     
