@@ -48,3 +48,7 @@ __Note:__ Because of GitHub API [rate limiting](https://developer.github.com/v3/
 Data analytics are provided vi a combination of SQL queries and Python [SciPy](http://www.scipy.org/) and [NumPy](http://www.numpy.org/). This process will generate all graphs, tables, and images needed by the manuscript. To start the data analytics process, execute:
 
     python plots.py
+
+Data summary analytics are gathered using SQL queries, and transfomred into LaTex table format. To execute the SQL summary analytics, execute:
+
+    python get_summary_data.py
