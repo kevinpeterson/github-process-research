@@ -32,4 +32,4 @@ Now, all necessary tables and images should be generated. The next step is to ge
 
     ./publish.sh
 
-If you've contributed new research to the paper, don't forget to add your name to the paper! You can do this by adding another author on the top of ```main.tex```.
+If you've contributed novel research to the manuscript, don't forget to add your name! You can do this by adding another author on the top of ```main.tex```.
