@@ -1,3 +1,10 @@
+##############################################################
+# research.py
+#
+# Gathers and stores data using the GitHub REST API (https://developer.github.com/v3/).
+#
+# License: MIT 2014 Kevin Peterson
+##############################################################
 import requests
 import json
 import time
@@ -51,7 +58,8 @@ metadata.create_all()
 session = requests.Session()
 session.auth = (github_username, github_password)
 
-response = urllib2.urlopen('https://raw.github.com/gist/4669395')
+# Get some random words (from https://gist.github.com/duncannz/4669395)
+response = urllib2.urlopen('https://gist.github.com/duncannz/4669395/raw/3f9b27fe0e33326e0cedca7472a9d55855a747bc/words.txt')
 random_words = response.readlines()
 
 def _get_user_organizations(user):
@@ -61,6 +69,7 @@ def _get_user_organizations(user):
 		orgs = json.loads(response.text or response.content)
 		return [org['login'] for org in orgs]
 
+# pick a radom repository by searching with a random keyword
 def _get_random_repo():
 	while True:
 		keyword = random.choice(random_words)
@@ -86,6 +95,7 @@ def _check_quota(response):
 		time.sleep(65 * 60)
 	if requests_left % 10 == 0: print "Requests Left: " + str(requests_left)
 
+# crawl around and gather data until the target sample size is reached
 def crawl(sample_size):
 	while(sample_size > db_session.query(repository_table).count()):
 		try:

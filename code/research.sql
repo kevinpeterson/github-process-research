@@ -1,3 +1,10 @@
+##############################################################
+# research.sql
+#
+# SQL analytical queries used to analyze data from the data gathering process.
+#
+# License: MIT 2014 Kevin Peterson
+##############################################################
 select 
     'Issues' as var, avg(counts), min(counts), max(counts), std(counts)
 from

@@ -1,3 +1,10 @@
+##############################################################
+# plots.py
+#
+# Creates all graphs and tables used in the manuscript.
+#
+# License: MIT 2014 Kevin Peterson
+##############################################################
 from plotter import Histograph, ScatterPlot, PieChart
 
 committers_query = '''select count(distinct committer) from commit c group by repository_id'''

@@ -1,3 +1,10 @@
+##############################################################
+# get_summary_data.py
+#
+# Builds the data summary table (Table 1: GitHub summary statistics).
+#
+# MIT 2014 Kevin Peterson
+##############################################################
 import MySQLdb as mdb
 from decimal import Decimal
 from config import *
@@ -12,6 +19,7 @@ try:
 
 	cur = con.cursor()
 
+	# read in the main SQL analytics
 	with open ("research.sql", "r") as sql_file:
 		sql = sql_file.read()
 
@@ -29,6 +37,7 @@ try:
 		4:lambda x: round(x,2)
 	}
 
+	# output the LaTeX table
 	for row in rows:
 		for i in range(0,5):
 			print col_processor[i](row[i]),

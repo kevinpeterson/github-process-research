@@ -1,3 +1,10 @@
+##############################################################
+# plotter.py
+#
+# A helper class for creating PieCharts, Scatterplots, and Histographs.
+#
+# License: MIT 2014 Kevin Peterson
+##############################################################
 import sys
 import MySQLdb
 from config import *
