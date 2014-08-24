@@ -3,7 +3,7 @@
 #
 # Builds the data summary table (Table 1: GitHub summary statistics).
 #
-# MIT 2014 Kevin Peterson
+# License: MIT 2014 Kevin Peterson
 ##############################################################
 import MySQLdb as mdb
 from decimal import Decimal
