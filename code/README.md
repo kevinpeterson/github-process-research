@@ -45,10 +45,10 @@ __Note:__ The data gathering process may take several hours (or longer, dependin
 __Note:__ Because of GitHub API [rate limiting](https://developer.github.com/v3/#rate-limiting), the data gathering process will automatically pause when the alloted number of requests has been reached. Data gathering will automatically resume after an hour of waiting to allow for re-allocation of hourly requests.
     
 ## Analyze Data
-Data analytics are provided via combination of SQL queries and Python [SciPy](http://www.scipy.org/) and [NumPy](http://www.numpy.org/). This process will generate all graphs, tables, and images needed by the manuscript. To start the data analytics process, execute:
+Once the data has been gathered, data analytics are provided via combination of SQL queries and Python [SciPy](http://www.scipy.org/) and [NumPy](http://www.numpy.org/). This process will generate all graphs, tables, and images needed by the manuscript. To start the data analytics process, execute:
 
     python plots.py
 
 Data summary analytics are gathered using SQL queries, and transformed into LaTeX table format. To execute the SQL summary analytics, execute:
 
-    python get_summary_data.py
+    python get_summary_data.py > ../paper/summary_statistics.tex
