@@ -1,5 +1,5 @@
 # Manuscript
-The LaTex-based report of findings based on [the data analysis code](../code), literature reivew, and individual interviews.
+The LaTeX-based report of findings based on [the data analysis code](../code), literature reivew, and individual interviews.
 
 ## Generate the PDF
 * __Install LaTeX__ - There are several ways to install the LaTeX packages needed to comple - refer to the [LaTeX documentation](http://latex-project.org/ftp.html) for more info.
